@@ -1,3 +1,5 @@
+
+import UserLayout from "@/components/app/layout/navbar/userLayout"
 import appApiClient from "@/utils/auth"
 import { PROFILE_URL } from "@/utils/constants"
 import { useEffect, useState } from "react"
@@ -23,9 +25,12 @@ const Home = () => {
 
   },[])
   return (
-    <div>
-      {user}
-    </div>
+   <UserLayout>
+     <main>
+  
+  {user}
+</main>
+   </UserLayout>
   )
 }
 

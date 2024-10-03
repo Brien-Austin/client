@@ -1,8 +1,11 @@
+import UserLayout from "@/components/app/layout/navbar/userLayout"
 
 
 const Profile = () => {
   return (
-    <div>Profile</div>
+ <UserLayout>
+     <div>Profile</div>
+ </UserLayout>
   )
 }
 
