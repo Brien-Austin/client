@@ -1,5 +1,5 @@
 import UserLayout from '@/components/app/layout/navbar/userLayout'
-import React from 'react'
+
 
 const Courses = () => {
   return (
