@@ -6,6 +6,7 @@ import Courses from './pages/courses'
 
 const App = () => {
   return (
+    // Changes not reflecting
    <Router>
     <Routes>
       <Route path='/' element={<Home/>}/>
