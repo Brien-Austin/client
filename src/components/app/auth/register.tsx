@@ -22,6 +22,8 @@ const Register: React.FC<RegisterProps> = ({ setAuthState }) => {
         
     })
 
+    const {errors} = form.formState
+
 
 
       const onSubmit = async(values:z.infer<typeof registerShcema>) =>{
@@ -54,10 +56,13 @@ const Register: React.FC<RegisterProps> = ({ setAuthState }) => {
         </h1>
         <p className="text-center text-muted-foreground text-lg">A Online Learning Platform</p>
     </section>
-    <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col w-4/5 lg:px-10 sm:px-2 mx-auto gap-5 ">
-        <input placeholder="Email Address" className="w-full border py-3 px-2 outline-none rounded-md border-neutral-400" type="text" {...form.register("email")} />
-        <input placeholder="Password" className="border py-3 px-2 rounded-md outline-none border-neutral-400 " type="password" {...form.register("password")}/>
-        <input placeholder="Confirm Password" className="border py-3 px-2 rounded-md outline-none border-neutral-400 " type="password" {...form.register("confirmPassword")}/>
+    <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col w-4/5 lg:px-10 sm:px-2 mx-auto space-y-2">
+        <input id="email"  placeholder="Email Address" className="w-full border py-3 px-2 outline-none rounded-md border-neutral-400" type="text" {...form.register("email")} />
+<label htmlFor="email">      {errors.email && <p className="text-xs text-red-500 ">{errors.email.message}</p>}</label>
+        <input id="password" placeholder="Password" className="border py-3 px-2 rounded-md outline-none border-neutral-400 " type="password" {...form.register("password")}/>
+       <label htmlFor="password"> {errors.password && <p className="text-xs text-red-500 mb-2 ">{errors.password.message}</p>}</label>
+        <input id="confirmPassword" placeholder="Confirm Password" className="border py-3 px-2 rounded-md outline-none border-neutral-400 " type="password" {...form.register("confirmPassword")}/>
+     <label htmlFor="confirmPassword">  {errors.confirmPassword && <p className="text-xs text-red-500 mb-2">{errors.confirmPassword.message}</p>}</label> 
    
 <button type="submit" className={cn("bg-gradient-to-r from-purple-500 to-purple-600 px-2 py-3 rounded-md text-white text-lg")}> Register</button>
 
