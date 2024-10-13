@@ -8,11 +8,14 @@ import { LOGIN_URL } from "@/utils/constants"
 import toast from "react-hot-toast"
 import {  useNavigate } from "react-router-dom"
 import { setAccessToken, setRefreshToken } from "@/utils/localstorage"
+import { useDispatch } from "react-redux"
+import { setIsAuthenticated } from "@/store/slice/auth"
 
 interface LoginProps {
     setAuthState :(state:AuthState) => void
 }
 const Login:React.FC<LoginProps> = ({setAuthState}) => {
+    const dispatch = useDispatch()
     const router = useNavigate()
 
     const form = useForm<z.infer<typeof loginSchema>>({
@@ -35,6 +38,7 @@ const Login:React.FC<LoginProps> = ({setAuthState}) => {
 
         if(data){
          toast.success("Login Successful")
+         dispatch(setIsAuthenticated())
          setAccessToken(data?.accessToken)
          setRefreshToken(data?.refreshToken)
          setTimeout(()=>{

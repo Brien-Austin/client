@@ -3,9 +3,12 @@ import { API_URL } from "./constants"
 import { cleanToken, getAccessToken, getRefreshToken, setAccessToken, setRefreshToken } from "./localstorage"
 import toast from "react-hot-toast";
 
+
 const appApiClient = axios.create({
     baseURL : API_URL
 })
+
+
 
 appApiClient.interceptors.request.use(
     (config) => {
@@ -24,6 +27,7 @@ appApiClient.interceptors.request.use(
 appApiClient.interceptors.response.use(
     (response)=>response,
     async(error) =>{
+      
         if(error.response && error.response.status === 400){
             try {
                 const refreshToken = getRefreshToken()
@@ -36,6 +40,8 @@ appApiClient.interceptors.response.use(
             } catch (error) {
                 cleanToken()
                 toast.error('Session expired !!! Login Again')
+            
+
                 return Promise.reject(error)
                 
             }
