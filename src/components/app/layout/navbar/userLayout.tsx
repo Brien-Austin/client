@@ -13,7 +13,7 @@ const UserLayout = ({children} : {children : React.ReactNode}) => {
     }
   },[router,user,isLoading])
   return (
-    <main className='h-screen w-full bg-[#ffffe6]' >
+    <main className='h-screen w-full ' >
         <NavBar/>
         <SideBar/>
         <div className="mt-12 lg:px-10 sm:px-5 ">
