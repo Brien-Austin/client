@@ -1,6 +1,8 @@
 import UserLayout from "@/components/app/layout/navbar/userLayout";
 import { useAuth } from "@/hooks/useAuth";
 import { getUserName } from "@/utils/get-username";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -8,19 +10,13 @@ import { getUserName } from "@/utils/get-username";
 
 const Home = () => {
 
-  const {user } = useAuth()
- 
-  
-
-
-
-
-  if(user){
-    console.log(user)
-  }
-
-
-
+  const {user,isLoading} = useAuth()
+  const router = useNavigate()
+  useEffect(()=>{
+    if( !isLoading && !user){
+      router("/auth")
+    }
+  },[router,user,isLoading])
 
 
 
