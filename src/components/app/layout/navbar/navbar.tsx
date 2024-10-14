@@ -16,11 +16,11 @@ const NavBar = () => {
    
     
   return (
-    <nav className='fixed top-0 left-0 px-2 py-1 border-t bg-white z-50 shadow-sm  w-full'>
-        <section className='w-full  h-12 flex  items-center justify-between'>
+    <nav className='fixed top-0 left-0  py-1 border-t bg-white z-50 shadow-sm  w-full'>
+        <section className='w-full  h-12 flex  items-center justify-between lg:px-10 sm:px-3'>
            <div className="flex space-x-5  items-center">
-          <Sheet>
-            <SheetTrigger>
+          <Sheet >
+            <SheetTrigger className='sm:block lg:hidden'>
             <Menu className='text-neutral-600'/>
             </SheetTrigger>
             <SheetContent side={'left'} >
@@ -34,7 +34,7 @@ const NavBar = () => {
 
             </SheetContent>
           </Sheet>
-           <h1 className='text-xl font-semibold text-[#252525]'>Acquel</h1>
+           <h1 className='sm:text-lg lg:text-xl font-semibold text-neutral-600'>Acquel</h1>
            </div>
            <Popover>
             <PopoverTrigger>
