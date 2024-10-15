@@ -1,8 +1,10 @@
 
 import { Book, Trophy, GraduationCap, Rocket, ArrowRight } from 'lucide-react'
-import { Button } from "@/components/ui/button"
+
+import { useNavigate } from 'react-router-dom'
 
 export default function ImprovedOnboardingScreen1() {
+    const navigate = useNavigate()
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-600 via-purple-700 to-indigo-800 text-white flex flex-col">
       {/* Top Section */}
@@ -47,12 +49,12 @@ export default function ImprovedOnboardingScreen1() {
         </div>
 
         {/* CTA Button */}
-        <Button 
-          className="w-full bg-purple-600 text-white h-14  hover:from-purple-600 hover:to-indigo-600 text-white font-bold py-4 rounded-md text-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg"
+        <button onClick={()=>navigate("/auth")}
+          className="bg-white text-purple-600 w-full flex items-center justify-center space-x-1 h-12 rounded-full"
         >
-          Get Started
+        <h1 className="font-bold">  Get Started</h1>
           <ArrowRight className="ml-2 w-5 h-5" />
-        </Button>
+        </button>
 
        
 
