@@ -11,7 +11,7 @@ const UserLayout = ({children} : {children : React.ReactNode}) => {
   const token = getAccessToken();
   useEffect(() => {
     if (!token) {
-      router("/auth");
+      router("/onboard");
     }
   }, [router, token]);
   
