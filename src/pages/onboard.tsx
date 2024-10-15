@@ -1,5 +1,5 @@
 
-import { Book, Trophy, GraduationCap, Rocket, ArrowRight, CheckCircle2 } from 'lucide-react'
+import { Book, Trophy, GraduationCap, Rocket, ArrowRight } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 
 export default function ImprovedOnboardingScreen1() {
@@ -48,17 +48,13 @@ export default function ImprovedOnboardingScreen1() {
 
         {/* CTA Button */}
         <Button 
-          className="w-full bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white font-bold py-4 rounded-full text-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg"
+          className="w-full bg-purple-600 text-white h-14  hover:from-purple-600 hover:to-indigo-600 text-white font-bold py-4 rounded-md text-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg"
         >
           Get Started
           <ArrowRight className="ml-2 w-5 h-5" />
         </Button>
 
-        {/* Additional Info */}
-        <div className="flex items-center justify-center space-x-2 text-sm opacity-80">
-          <CheckCircle2 className="w-4 h-4" />
-          <span>No credit card required</span>
-        </div>
+       
 
         {/* Terms and Conditions */}
         <p className="text-xs text-center opacity-70 mt-4">
