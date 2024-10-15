@@ -29,7 +29,7 @@ const Home = () => {
           {isLoading ? (
             <div className="h-8  animate-pulse bg-slate-50 rounded col-span-2"></div>
           ) : (
-            <h1 className=" text-sm font-medium text-neutral-500 m">
+            <h1 className=" text-sm font-medium text-neutral-600 m">
               {" "}
               Welcome <br />{" "}
               <span className=" font-bold to-purple-600 text-xl">
@@ -40,7 +40,7 @@ const Home = () => {
         </section>
 
         <section className="mt-6">
-          <h1 className="text-neutral-500 font-bold text-xl drop-shadow-sm ">
+          <h1 className="text-neutral-600 font-bold text-xl drop-shadow-sm ">
            Courses
           </h1>
 
@@ -51,7 +51,7 @@ const Home = () => {
         </section>
 
         <section className="mt-6">
-        <h1 className="text-neutral-500 font-bold text-xl drop-shadow-sm ">
+        <h1 className="text-neutral-600 font-bold text-xl drop-shadow-sm ">
            Explore by Categories
            
           </h1>
