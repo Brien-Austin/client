@@ -35,7 +35,7 @@ const Home = () => {
         </section>
 
         <section className="mt-6">
-          <h1 className="text-neutral-600 font-bold text-xl drop-shadow-sm ">
+          <h1 className="text-neutral-600 font-[900] text-xl drop-shadow-sm ">
            Courses
           </h1>
 
@@ -46,7 +46,7 @@ const Home = () => {
         </section>
 
         <section className="mt-6">
-        <h1 className="text-neutral-600 font-bold text-xl drop-shadow-sm ">
+        <h1 className="text-neutral-600 font-[900] text-xl drop-shadow-sm ">
            Explore by Categories
            
           </h1>
