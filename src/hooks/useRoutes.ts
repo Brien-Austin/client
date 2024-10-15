@@ -1,5 +1,5 @@
 import { useMemo } from "react"
-import {Book, Home, UserRound} from 'lucide-react'
+import { BookOpen, Home, UserRound} from 'lucide-react'
 
 export const useRoutes = () =>{
     
@@ -12,7 +12,7 @@ export const useRoutes = () =>{
         },
         {
             label : 'My Courses',
-            icon : Book,
+            icon : BookOpen,
             route :'/courses'
         },
         {

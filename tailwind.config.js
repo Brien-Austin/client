@@ -8,7 +8,7 @@ export default {
   theme: {
   	extend: {
       screens : {
-        sm : "350px"
+        sm : "320px"
 
       },
   		borderRadius: {
