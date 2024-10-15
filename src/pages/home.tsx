@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import CourseList from "@/components/app/home/courselist";
+import CategoryList from "@/components/app/home/catergorylist";
 
 const Home = () => {
   const { user, isLoading } = useAuth();
@@ -38,8 +39,10 @@ const Home = () => {
           <h1 className="text-neutral-600 font-[900] text-xl drop-shadow-sm ">
            Courses
           </h1>
+         
 
           <div className="mt-2">
+          <CategoryList/>
             <CourseList/>
 
           </div>
@@ -47,9 +50,10 @@ const Home = () => {
 
         <section className="mt-6">
         <h1 className="text-neutral-600 font-[900] text-xl drop-shadow-sm ">
-           Explore by Categories
+           Webminars
            
           </h1>
+       
         </section>
   
 
