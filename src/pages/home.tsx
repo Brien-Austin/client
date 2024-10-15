@@ -3,18 +3,13 @@ import { useAuth } from "@/hooks/useAuth";
 import { getUserName } from "@/utils/get-username";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getAccessToken } from "@/utils/localstorage";
+
 import CourseList from "@/components/app/home/courselist";
 
 const Home = () => {
   const { user, isLoading } = useAuth();
   const router = useNavigate();
-  const token = getAccessToken();
-  useEffect(() => {
-    if (!token) {
-      router("/auth");
-    }
-  }, [router, token]);
+ 
 
   useEffect(() => {
     if (!user && !isLoading) {
@@ -27,7 +22,7 @@ const Home = () => {
       <main className=" w-full h-full  ">
         <section className="">
           {isLoading ? (
-            <div className="h-8  animate-pulse bg-slate-50 rounded col-span-2"></div>
+            <div className="h-12  animate-pulse bg-slate-50 rounded col-span-2"></div>
           ) : (
             <h1 className=" text-sm font-medium text-neutral-600 m">
               {" "}

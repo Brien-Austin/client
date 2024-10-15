@@ -1,17 +1,21 @@
 import React, { useEffect } from 'react'
 import NavBar from './navbar'
 import SideBar from './sidebar'
-import { useAuth } from '@/hooks/useAuth'
+
 import { useNavigate } from 'react-router-dom'
+import { getAccessToken } from '@/utils/localstorage'
 
 const UserLayout = ({children} : {children : React.ReactNode}) => {
-  const {user,isLoading} = useAuth()
+
   const router = useNavigate()
-  useEffect(()=>{
-    if( !isLoading && !user){
-      router("/auth")
+  const token = getAccessToken();
+  useEffect(() => {
+    if (!token) {
+      router("/auth");
     }
-  },[router,user,isLoading])
+  }, [router, token]);
+  
+  
   return (
     <main className='h-screen w-full ' >
         <NavBar/>
