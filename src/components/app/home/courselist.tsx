@@ -5,7 +5,7 @@ const CourseList = () => {
   return (
     <section className="flex space-x-5 overflow-x-auto ">
       {courses.map((c, i) => (
-        <Course key={i} 
+        <Course key={i} id={c.id}
         title={c.title} tags={c.tags} imageurl={c.imageurl} description={c.description}/>
       ))}
     </section>

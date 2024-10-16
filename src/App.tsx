@@ -4,6 +4,7 @@ import Profile from './pages/profile'
 import Auth from './pages/auth'
 import Courses from './pages/courses'
 import OnBoard from './pages/onboard'
+import Course from './pages/course'
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
       <Route path='/onboard' element={<OnBoard/>}/>
       <Route path='/auth' element={<Auth/>}/>
       <Route path='/courses' element={<Courses/>}/>
+      <Route path = "/course/:id" element={<Course/>}/>
     </Routes>
    </Router>
   )

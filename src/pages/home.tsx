@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import CourseList from "@/components/app/home/courselist";
 import CategoryList from "@/components/app/home/catergorylist";
 
+import { ChevronRight } from "lucide-react";
+
 const Home = () => {
   const { user, isLoading } = useAuth();
   const router = useNavigate();
@@ -36,9 +38,14 @@ const Home = () => {
         </section>
 
         <section className="mt-6">
+          <div className="flex justify-between items-center">
           <h1 className="text-neutral-600 font-[900] text-xl drop-shadow-sm ">
            Courses
           </h1>
+          <div className="text-sm text-white bg-purple-600  rounded-full p-1 font-semibold">
+            <ChevronRight size={16}/>
+          </div>
+          </div>
          
 
           <div className="mt-2">

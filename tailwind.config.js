@@ -7,6 +7,17 @@ export default {
   ],
   theme: {
   	extend: {
+		keyframes:{
+			bounceRight: {
+				'0%, 100%': { transform: 'translateX(0) translateY(0)' },
+				'50%': { transform: 'translateX(50px) translateY(-25%)' },
+			  },
+
+		},
+		animation : {
+			'bounce-right': 'bounceRight 1s infinite'
+
+		},
       screens : {
         sm : "320px"
 

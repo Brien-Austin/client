@@ -1,5 +1,6 @@
 import { Image } from "lucide-react";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 interface CourseTags {
   domain: string;
@@ -8,21 +9,23 @@ interface CourseTags {
   }[];
 }
 interface CourseProps {
+  id : string
   title: string;
   imageurl: string;
   description: string;
   tags: CourseTags[];
 }
 
-const Course: React.FC<CourseProps> = ({
+const Course: React.FC<CourseProps> = ({id,
   title,
   imageurl,
   description,
   tags,
 }) => {
+  const navigate = useNavigate()
   console.log(tags)
   return (
-    <section className="flex-shrink-0 w-56 h-64 border border-neutral-200 bg-white rounded-md p-1 flex flex-col shadow-sm ">
+    <section onClick={()=>{navigate(`/course/${id}`)}} className="flex-shrink-0 w-56 h-64 border border-neutral-200 bg-white rounded-md p-1 flex flex-col shadow-sm ">
       {imageurl ? (
         <img src={imageurl} className="w-full shadow-sm h-3/6" alt="" />
       ) : (
