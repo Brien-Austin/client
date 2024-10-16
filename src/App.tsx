@@ -5,6 +5,12 @@ import Auth from './pages/auth'
 import Courses from './pages/courses'
 import OnBoard from './pages/onboard'
 import Course from './pages/course'
+import Admin from './pages/admin'
+import Users from './pages/admin/users'
+import Settings from './pages/admin/settings'
+import AdminCourses from './pages/admin/courses'
+import Enrollments from './pages/admin/enrollments'
+import Webminars from './pages/admin/webminars'
 
 const App = () => {
   return (
@@ -18,6 +24,12 @@ const App = () => {
       <Route path='/auth' element={<Auth/>}/>
       <Route path='/courses' element={<Courses/>}/>
       <Route path = "/course/:id" element={<Course/>}/>
+      <Route path='/admin' element={<Admin/>}/>
+      <Route path='/admin/users' element={<Users/>}/>
+      <Route path='/admin/settings' element={<Settings/>}/>
+      <Route path='/admin/courses' element={<AdminCourses/>}/>
+      <Route path='/admin/enrollments' element={<Enrollments/>}/>
+      <Route path='/admin/webminars' element={<Webminars/>}/>
     </Routes>
    </Router>
   )
