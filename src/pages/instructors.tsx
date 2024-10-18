@@ -23,7 +23,7 @@ const Instructors: React.FC = () => {
 
   return (
     <main>
-      <header className="fixed top-6 left-6 flex space-x-3 items-center">
+      <header className="fixed top-0 w-full left-0 flex px-5 py-3 z-50 space-x-3 items-center z-50 bg-white shadow-sm   backdrop-blur-md">
         <button
           onClick={() => {
             navigate(-1);
@@ -40,7 +40,7 @@ const Instructors: React.FC = () => {
         </div>
       </header>
 
-      <section className="flex flex-col space-y-10 px-5 mt-24">
+      <section className="flex  mb-20 flex-col space-y-10 px-5 mt-24">
         {!isLoading && instructors ? (
           <>
             {" "}
