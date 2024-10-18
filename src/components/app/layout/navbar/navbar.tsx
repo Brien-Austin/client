@@ -1,14 +1,15 @@
 // import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 // import { useAuth } from '@/hooks/useAuth'
-import { useRoutes } from '@/hooks/useRoutes'
+
+import { useSideBarRoutes } from '@/hooks/useSideBarRoutes'
 import { cn } from '@/lib/utils'
 import { LucideIcon, Menu } from 'lucide-react'
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 const NavBar = () => {
-  const routes = useRoutes()
+  const routes = useSideBarRoutes()
   // const { user } = useAuth();
     
   return (
@@ -26,7 +27,7 @@ const NavBar = () => {
               <SheetContent side={"left"}>
                 <div className="flex flex-col space-y-2 mt-8">
                   {routes.map((r, i) => (
-                    <NavItems
+                    <SideBarItems
                       key={i}
                       label={r.label}
                       icon={r.icon}
@@ -106,6 +107,7 @@ const NavItems: React.FC<NavItemProps> = ({ label, route, icon: Icon }) => {
             isActive ? "text-purple-600" : "text-neutral-500 group-hover:text-purple-400"
           )}
         />
+        
         {/* <div
           className={cn(
             "absolute -bottom-1 left-1/2 transform -translate-x-1/2 h-1 w-1 rounded-full bg-purple-600 transition-all duration-300",
@@ -113,9 +115,33 @@ const NavItems: React.FC<NavItemProps> = ({ label, route, icon: Icon }) => {
           )}
         /> */}
       </div>
+      
    
     </Link>
   );
 }
+
+const SideBarItems: React.FC<NavItemProps> = ({ label, route, icon: Icon }) => {
+  const pathname = useLocation();
+  const isActive = pathname.pathname === route;
+
+  return (
+    <Link
+      to={route}
+      className={cn(
+        "flex items-center rounded-md text-purple-700 transition-all duration-300 group px-3 py-2",
+        isActive ? "bg-purple-50" : "hover:bg-purple-50"
+      )}
+    >
+      <div className="flex items-center space-x-2">
+        <div className="bg-white opacity-70 z-50 border-white p-1 rounded-full shadow-sm flex items-center justify-center">
+          <Icon size={16} />
+        </div>
+        <span className="flex-1 text-left truncate">{label}</span>
+      </div>
+    </Link>
+  );
+};
+
 
 export default NavBar

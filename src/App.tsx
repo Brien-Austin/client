@@ -11,6 +11,7 @@ import Settings from './pages/admin/settings'
 import AdminCourses from './pages/admin/courses'
 import Enrollments from './pages/admin/enrollments'
 import Webminars from './pages/admin/webminars'
+import Instructors from './pages/instructors'
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
       <Route path='/admin/courses' element={<AdminCourses/>}/>
       <Route path='/admin/enrollments' element={<Enrollments/>}/>
       <Route path='/admin/webminars' element={<Webminars/>}/>
+      <Route path='/instructors' element={<Instructors/>}/>
     </Routes>
    </Router>
   )

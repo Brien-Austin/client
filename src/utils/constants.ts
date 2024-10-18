@@ -1,6 +1,10 @@
 export const API_URL = ` ${import.meta.env.VITE_API_URL}`
 const AUTH_URL='/api/v1/auth/user'
 export const USER_URL = '/api/v1/user'
+export const ADMIN_URL = '/api/v1/admin'
 export const PROFILE_URL = `${USER_URL}/profile`
 export const REGISTER_URL= `${AUTH_URL}/register`
 export const LOGIN_URL = `${AUTH_URL}/login`
+export const IMAGE_UPLOAD = `${ADMIN_URL}/image`
+export const CREATE_COURSE = `${ADMIN_URL}/create-course`
+export const FETCH_INSTRUCTORS = `${USER_URL}/instructors`

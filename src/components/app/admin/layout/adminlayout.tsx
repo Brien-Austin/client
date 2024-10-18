@@ -15,7 +15,7 @@ const Adminlayout = ({
     <>
     <SideBar toggle={toggle } setToggle={setToggle}/>
   
-<div className={clsx('ml-20 transition', toggle && 'ml-56 ')}>
+<div className={clsx('ml-20 transition px-5', toggle && 'ml-56 ')}>
 
 
     {

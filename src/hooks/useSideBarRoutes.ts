@@ -1,7 +1,7 @@
 import { useMemo } from "react"
-import { BookOpen, Home, UserRound} from 'lucide-react'
+import {  Home, UserRound} from 'lucide-react'
 
-export const useRoutes = () =>{
+export const useSideBarRoutes = () =>{
     
     const routes = useMemo(()=>
     [
@@ -11,15 +11,11 @@ export const useRoutes = () =>{
             route :'/'
         },
         {
-            label : 'My Courses',
-            icon : BookOpen,
-            route :'/courses'
-        },
-        {
-            label : 'Profile',
+            label : 'Instructors',
             icon : UserRound,
-            route :'/profile'
+            route :'/instructors'
         },
+    
         // {
         //     label : 'Instructors',
         //     icon : Teacher
