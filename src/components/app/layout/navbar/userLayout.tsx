@@ -20,7 +20,7 @@ const UserLayout = ({children} : {children : React.ReactNode}) => {
     <main className='h-screen w-full ' >
         <NavBar/>
   
-        <div className="mt-12 lg:px-10 sm:px-5 ">
+        <div className="mt-20 lg:px-10 sm:px-5 ">
         {children}
         </div>
         

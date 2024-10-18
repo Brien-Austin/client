@@ -1,5 +1,6 @@
 // import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
+import { useRoutes } from '@/hooks/useRoutes'
 // import { useAuth } from '@/hooks/useAuth'
 
 import { useSideBarRoutes } from '@/hooks/useSideBarRoutes'
@@ -9,7 +10,8 @@ import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 const NavBar = () => {
-  const routes = useSideBarRoutes()
+  const routes = useRoutes()
+  const sideBarRoutes = useSideBarRoutes()
   // const { user } = useAuth();
     
   return (
@@ -26,7 +28,7 @@ const NavBar = () => {
               </SheetTrigger>
               <SheetContent side={"left"}>
                 <div className="flex flex-col space-y-2 mt-8">
-                  {routes.map((r, i) => (
+                  {sideBarRoutes.map((r, i) => (
                     <SideBarItems
                       key={i}
                       label={r.label}
