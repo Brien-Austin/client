@@ -8,3 +8,5 @@ export const LOGIN_URL = `${AUTH_URL}/login`
 export const IMAGE_UPLOAD = `${ADMIN_URL}/image`
 export const CREATE_COURSE = `${ADMIN_URL}/create-course`
 export const FETCH_INSTRUCTORS = `${USER_URL}/instructors`
+export const FETCH_COURSES = `${USER_URL}/courses`
+export const FETCH_COURSE = `${USER_URL}/course`

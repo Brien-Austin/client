@@ -1,3 +1,4 @@
+
 export const courses = [
     {
         id: "course-1",
@@ -176,6 +177,10 @@ export const courses = [
     }
 ];
 
-export const getCourseById = (id: string) => {
-    return courses.find((c) => c.id === id);
-};
+// export const getCourseById = (id: string) => {
+//     const {data} = useQuery<Course>({
+//         queryKey : ["fetch course"],
+//         queryFn 
+//     })
+//     return courses.find((c) => c.id === id);
+// };

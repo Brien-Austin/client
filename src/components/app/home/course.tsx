@@ -1,19 +1,15 @@
+import { Tag } from "@/types/api-return";
 import { Image } from "lucide-react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-interface CourseTags {
-  domain: string;
-  languages: {
-    name: string;
-  }[];
-}
+
 interface CourseProps {
   id : string
   title: string;
   imageurl: string;
   description: string;
-  tags: CourseTags[];
+  tags: Tag;
 }
 
 const Course: React.FC<CourseProps> = ({id,

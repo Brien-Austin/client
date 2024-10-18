@@ -1,9 +1,8 @@
+import { Types } from "mongoose";
 export type InstructorType = {
     _id: string;
     email: string;
-    profileUrl: string;
-    canCreateCourse: boolean;
-    courses: CourseType[];
+
   }
   
   export type CourseType = {
@@ -11,4 +10,30 @@ export type InstructorType = {
     title: string;
     chapters: string[];
   }
+
+  export type Tag = {
+    domain: string,
+    languages : {
+        name : string
+    }[]
+  }
   
+
+ 
+
+
+export interface Course {
+    _id : string
+  title: string;
+  instructor: Types.ObjectId;
+  imageurl?: string;
+  price?: number;
+  isFree: boolean;
+  isYoutubeCourse: boolean;
+  studentsEnrolled: Types.ObjectId[];
+  description?: string;
+  tags?: Tag;
+  chapters?: [];
+}
+
+
