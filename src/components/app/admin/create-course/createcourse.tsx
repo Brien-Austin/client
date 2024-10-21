@@ -1,5 +1,5 @@
 import * as z from "zod";
-import { courseSchema } from "@/types/auth/auth";
+import { courseSchema } from "@/types/auth/userauth";
 import { ChevronLeft, ImageUp, X } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";

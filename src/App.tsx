@@ -13,6 +13,12 @@ import Enrollments from './pages/admin/enrollments'
 import Webminars from './pages/admin/webminars'
 import Instructors from './pages/instructors'
 
+import Instructor from './pages/instructor/home'
+import InstructorWebminars from './pages/instructor/webminars'
+import InstructorEnrollments from './pages/instructor/enrollments'
+import InstructorSettings from './pages/instructor/settings'
+import InstructorCourses from './pages/instructor/courses'
+
 const App = () => {
   return (
     // Changes not reflecting
@@ -32,6 +38,11 @@ const App = () => {
       <Route path='/admin/enrollments' element={<Enrollments/>}/>
       <Route path='/admin/webminars' element={<Webminars/>}/>
       <Route path='/instructors' element={<Instructors/>}/>
+      <Route path='/instructor/dashboard' element={<Instructor/>}/>
+      <Route path='/instructor/courses' element={<InstructorCourses/>}/>
+      <Route path='/instructor/webminars' element={<InstructorWebminars/>}/>
+      <Route path='/instructor/enrollments' element={<InstructorEnrollments/>}/>
+      <Route path='/instructor/settings' element={<InstructorSettings/>}/>
     </Routes>
    </Router>
   )

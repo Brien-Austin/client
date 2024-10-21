@@ -1,6 +1,6 @@
-import Login from "@/components/app/auth/login"
-import Register from "@/components/app/auth/register"
-import { AuthState } from "@/types/auth/auth"
+import Login from "@/components/app/user/auth/login"
+import Register from "@/components/app/user/auth/register"
+import { AuthState } from "@/types/auth/userauth"
 
 import React from "react"
 

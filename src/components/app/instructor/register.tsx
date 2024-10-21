@@ -1,4 +1,4 @@
-import { AuthState, registerShcema } from "@/types/auth/auth";
+import { AuthState, registerShcema } from "@/types/auth/userauth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod"
 import React, { useState } from "react";
@@ -7,14 +7,15 @@ import toast from "react-hot-toast";
 import { Loader2 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { apiClient } from "@/utils/api";
-import { REGISTER_URL } from "@/utils/constants";
 
-interface RegisterProps {
+import { INSTRUCTOR_REGISTER,  } from "@/utils/constants";
+import instructorApiClient from "@/utils/instructorauth";
+
+interface InstructorRegisterProps {
   setAuthState: (state: AuthState) => void;
 }
 
-const Register: React.FC<RegisterProps> = ({ setAuthState }) => {
+const InstructorRegister: React.FC<InstructorRegisterProps> = ({ setAuthState }) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const handleLogin = () => {
@@ -30,7 +31,7 @@ const Register: React.FC<RegisterProps> = ({ setAuthState }) => {
     const onSubmit = async (values: z.infer<typeof registerShcema>) => {
         try {
             setIsLoading(true);
-            const response = await apiClient.post(REGISTER_URL, {
+            const response = await instructorApiClient.post(INSTRUCTOR_REGISTER, {
                 email: values.email,
                 password: values.password
             });
@@ -118,4 +119,4 @@ const Register: React.FC<RegisterProps> = ({ setAuthState }) => {
     );
 };
 
-export default Register;
+export default InstructorRegister;

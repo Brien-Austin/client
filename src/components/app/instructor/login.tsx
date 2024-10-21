@@ -1,20 +1,21 @@
 import * as z from "zod"
 import { useForm } from 'react-hook-form'
-import { AuthState, loginSchema } from "@/types/auth/auth"
+import { AuthState, loginSchema } from "@/types/auth/userauth"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { cn } from "@/lib/utils"
-import { apiClient } from "@/utils/api"
-import { LOGIN_URL } from "@/utils/constants"
+
+import { INSTRUCTOR_LOGIN } from "@/utils/constants"
 import toast from "react-hot-toast"
 import {  useNavigate } from "react-router-dom"
-import { setAccessToken, setRefreshToken } from "@/utils/localstorage"
+import { setInstructorAccessToken, setInstructorRefreshToken } from "@/utils/localstorage"
 import { useDispatch } from "react-redux"
 import { setIsAuthenticated } from "@/store/slice/auth"
+import instructorApiClient from "@/utils/instructorauth"
 
-interface LoginProps {
+interface InstructorLoginProps {
     setAuthState :(state:AuthState) => void
 }
-const Login:React.FC<LoginProps> = ({setAuthState}) => {
+const InstructorLogin:React.FC<InstructorLoginProps> = ({setAuthState}) => {
     const dispatch = useDispatch()
     const router = useNavigate()
 
@@ -33,16 +34,16 @@ const Login:React.FC<LoginProps> = ({setAuthState}) => {
        try {
         console.log(values)
         
-        const response = await apiClient.post(LOGIN_URL,{email : values.email,password : values.password})
+        const response = await instructorApiClient.post(INSTRUCTOR_LOGIN,{email : values.email,password : values.password})
         const data = response.data
 
         if(data){
          toast.success("Login Successful")
          dispatch(setIsAuthenticated())
-         setAccessToken(data?.accessToken)
-         setRefreshToken(data?.refreshToken)
+         setInstructorAccessToken(data?.accessToken)
+         setInstructorRefreshToken(data?.refreshToken)
          setTimeout(()=>{
-            router("/")
+            router("/instructor/dashboard")
          
          },1000)
         }
@@ -78,4 +79,4 @@ const Login:React.FC<LoginProps> = ({setAuthState}) => {
   )
 }
 
-export default Login
+export default InstructorLogin

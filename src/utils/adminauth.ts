@@ -1,18 +1,18 @@
 import axios from "axios"
 import { API_URL } from "./constants"
-import { cleanUserTokens, getUserAccessToken, getUserRefreshToken, setUserAccessToken, setUserRefreshToken } from "./localstorage"
+import { cleanAdminTokens, getAdminAccessToken, getAdminRefreshToken,  setAdminAccessToken, setAdminRefreshToken } from "./localstorage"
 import toast from "react-hot-toast";
 
 
-const appApiClient = axios.create({
+const adminApiClient = axios.create({
     baseURL : API_URL
 })
 
 
 
-appApiClient.interceptors.request.use(
+adminApiClient.interceptors.request.use(
     (config) => {
-      const token = getUserAccessToken();
+      const token = getAdminAccessToken();
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }
@@ -24,21 +24,21 @@ appApiClient.interceptors.request.use(
   );
 
 
-appApiClient.interceptors.response.use(
+adminApiClient.interceptors.response.use(
     (response)=>response,
     async(error) =>{
       
         if(error.response && error.response.status === 400){
             try {
-                const refreshToken = getUserRefreshToken()
+                const refreshToken = getAdminRefreshToken()
                 if(refreshToken){
-                    const response = await appApiClient.post("/refresh-token",{refreshToken})
-                    setUserRefreshToken(response.data.refreshToken);
-            setUserAccessToken(response.data.accessToken);
+                    const response = await adminApiClient.post("/refresh-token",{refreshToken})
+                    setAdminRefreshToken(response.data.refreshToken);
+            setAdminAccessToken(response.data.accessToken);
                 }
                 
             } catch (error) {
-                cleanUserTokens()
+                cleanAdminTokens()
                 toast.error('Session expired !!! Login Again')
             
 
@@ -51,4 +51,4 @@ appApiClient.interceptors.response.use(
     }
 )
 
-export default appApiClient
+export default adminApiClient

@@ -1,4 +1,4 @@
-import UserLayout from '@/components/app/layout/navbar/userLayout'
+import UserLayout from '@/components/app/user/navbar/userLayout'
 
 
 const Courses = () => {

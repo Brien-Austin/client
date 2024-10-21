@@ -1,21 +1,67 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export function getAccessToken() {
-    return localStorage.getItem('accessToken');
-  }
-  export function getRefreshToken() {
-    return localStorage.getItem('refreshToken');
-  }
-  
-  export function setAccessToken(data: any) {
-    localStorage.setItem('accessToken', data);
-  }
-  
-  export function setRefreshToken(data: any) {
-    localStorage.setItem('refreshToken', data);
-  }
-  
-  export function cleanToken() {
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
-  }
-  
+
+// Admin Token Management
+export function getAdminAccessToken() {
+  return localStorage.getItem('adminAccessToken');
+}
+
+export function getAdminRefreshToken() {
+  return localStorage.getItem('adminRefreshToken');
+}
+
+export function setAdminAccessToken(token: any) {
+  localStorage.setItem('adminAccessToken', token);
+}
+
+export function setAdminRefreshToken(token: any) {
+  localStorage.setItem('adminRefreshToken', token);
+}
+
+export function cleanAdminTokens() {
+  localStorage.removeItem('adminAccessToken');
+  localStorage.removeItem('adminRefreshToken');
+}
+
+// User Token Management
+export function getUserAccessToken() {
+  return localStorage.getItem('userAccessToken');
+}
+
+export function getUserRefreshToken() {
+  return localStorage.getItem('userRefreshToken');
+}
+
+export function setUserAccessToken(token: any) {
+  localStorage.setItem('userAccessToken', token);
+}
+
+export function setUserRefreshToken(token: any) {
+  localStorage.setItem('userRefreshToken', token);
+}
+
+export function cleanUserTokens() {
+  localStorage.removeItem('userAccessToken');
+  localStorage.removeItem('userRefreshToken');
+}
+
+// Instructor Token Management
+export function getInstructorAccessToken() {
+  return localStorage.getItem('instructorAccessToken');
+}
+
+export function getInstructorRefreshToken() {
+  return localStorage.getItem('instructorRefreshToken');
+}
+
+export function setInstructorAccessToken(token: any) {
+  localStorage.setItem('instructorAccessToken', token);
+}
+
+export function setInstructorRefreshToken(token: any) {
+  localStorage.setItem('instructorRefreshToken', token);
+}
+
+export function cleanInstructorTokens() {
+  localStorage.removeItem('instructorAccessToken');
+  localStorage.removeItem('instructorRefreshToken');
+}

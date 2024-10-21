@@ -3,12 +3,12 @@ import NavBar from './navbar'
 
 
 import { useNavigate } from 'react-router-dom'
-import { getAccessToken } from '@/utils/localstorage'
+import { getUserAccessToken } from '@/utils/localstorage'
 
 const UserLayout = ({children} : {children : React.ReactNode}) => {
 
   const router = useNavigate()
-  const token = getAccessToken();
+  const token = getUserAccessToken();
   useEffect(() => {
     if (!token) {
       router("/onboard");

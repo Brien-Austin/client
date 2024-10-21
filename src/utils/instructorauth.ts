@@ -1,18 +1,18 @@
 import axios from "axios"
 import { API_URL } from "./constants"
-import { cleanUserTokens, getUserAccessToken, getUserRefreshToken, setUserAccessToken, setUserRefreshToken } from "./localstorage"
+import {  cleanInstructorTokens,  getInstructorAccessToken,  getInstructorRefreshToken,   setInstructorAccessToken, setInstructorRefreshToken } from "./localstorage"
 import toast from "react-hot-toast";
 
 
-const appApiClient = axios.create({
+const instructorApiClient = axios.create({
     baseURL : API_URL
 })
 
 
 
-appApiClient.interceptors.request.use(
+instructorApiClient.interceptors.request.use(
     (config) => {
-      const token = getUserAccessToken();
+      const token = getInstructorAccessToken();
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }
@@ -24,21 +24,21 @@ appApiClient.interceptors.request.use(
   );
 
 
-appApiClient.interceptors.response.use(
+instructorApiClient.interceptors.response.use(
     (response)=>response,
     async(error) =>{
       
         if(error.response && error.response.status === 400){
             try {
-                const refreshToken = getUserRefreshToken()
+                const refreshToken = getInstructorRefreshToken()
                 if(refreshToken){
-                    const response = await appApiClient.post("/refresh-token",{refreshToken})
-                    setUserRefreshToken(response.data.refreshToken);
-            setUserAccessToken(response.data.accessToken);
+                    const response = await instructorApiClient.post("/refresh-token",{refreshToken})
+                    setInstructorRefreshToken(response.data.refreshToken);
+            setInstructorAccessToken(response.data.accessToken);
                 }
                 
             } catch (error) {
-                cleanUserTokens()
+                cleanInstructorTokens()
                 toast.error('Session expired !!! Login Again')
             
 
@@ -51,4 +51,4 @@ appApiClient.interceptors.response.use(
     }
 )
 
-export default appApiClient
+export default instructorApiClient

@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Image } from 'lucide-react';
-import ChaptersList from '@/components/app/course/chapterslist';
+import ChaptersList from '@/components/app/user/course/chapterslist';
 import { Course as CourseType } from '@/types/api-return';
 import appApiClient from '@/utils/auth';
 import { USER_URL } from '@/utils/constants';

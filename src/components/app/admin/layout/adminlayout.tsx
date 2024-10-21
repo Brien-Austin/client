@@ -1,9 +1,14 @@
 
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import clsx from "clsx";
-import SideBar from "../../layout/navbar/sidebar";
+
+import { getAdminAccessToken } from "@/utils/localstorage";
+import { useNavigate } from "react-router-dom";
+
+
+import SideBar from "../../user/navbar/sidebar";
 const Adminlayout = ({
     children
 } : {
@@ -11,6 +16,16 @@ const Adminlayout = ({
 }) => {
 
     const [toggle , setToggle] = useState<boolean> (false)
+    const adminAccessToken = getAdminAccessToken()
+    const navigate = useNavigate()
+
+   
+    useEffect(()=>{
+        if(adminAccessToken === null){
+            navigate("/admin")
+        }
+
+    },[adminAccessToken,navigate])
   return (
     <>
     <SideBar toggle={toggle } setToggle={setToggle}/>

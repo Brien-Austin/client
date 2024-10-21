@@ -1,11 +1,11 @@
-import UserLayout from "@/components/app/layout/navbar/userLayout";
+import UserLayout from "@/components/app/user/navbar/userLayout";
 import { useAuth } from "@/hooks/useAuth";
 import { getUserName } from "@/utils/get-username";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import CourseList from "@/components/app/home/courselist";
-import CategoryList from "@/components/app/home/catergorylist";
+import CourseList from "@/components/app/user/home/courselist";
+import CategoryList from "@/components/app/user/home/catergorylist";
 
 import { ChevronRight } from "lucide-react";
 

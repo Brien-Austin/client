@@ -1,5 +1,5 @@
-import InstructorItem from "@/components/app/instructor/instructorItem";
-import { InstructorType } from "@/types/auth/auth";
+import InstructorItem from "@/components/app/user/instructor/instructorItem";
+import { InstructorType } from "@/types/auth/userauth";
 import appApiClient from "@/utils/auth";
 import { FETCH_INSTRUCTORS } from "@/utils/constants";
 import { getUserName } from "@/utils/get-username";
