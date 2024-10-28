@@ -7,6 +7,10 @@ export default {
   ],
   theme: {
   	extend: {
+		screens : {
+			"sm" : "320px"
+	
+		  },
 		keyframes:{
 			bounceRight: {
 				'0%, 100%': { transform: 'translateX(0) translateY(0)' },
@@ -18,10 +22,7 @@ export default {
 			'bounce-right': 'bounceRight 1s infinite'
 
 		},
-      screens : {
-        sm : "320px"
-
-      },
+     
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',

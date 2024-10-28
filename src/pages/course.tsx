@@ -6,9 +6,12 @@ import ChaptersList from '@/components/app/user/course/chapterslist';
 import { Course as CourseType } from '@/types/api-return';
 import appApiClient from '@/utils/auth';
 import { USER_URL } from '@/utils/constants';
+import { useAuth } from '@/hooks/useAuth';
 
 const Course: React.FC = () => {
   const { id: courseId } = useParams();
+  const {user} = useAuth()
+  console.log(user)
   const FETCH_COURSE = USER_URL + `/course/${courseId}`;
   const navigate = useNavigate();
 

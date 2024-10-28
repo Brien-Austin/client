@@ -12,6 +12,7 @@ import { ChevronRight } from "lucide-react";
 const Home = () => {
   const { user, isLoading } = useAuth();
   const router = useNavigate();
+  console.log('User : ',user)
  
 
   useEffect(() => {
