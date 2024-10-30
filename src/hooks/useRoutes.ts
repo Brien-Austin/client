@@ -1,5 +1,5 @@
 import { useMemo } from "react"
-import { BookOpen, Home, UserRound} from 'lucide-react'
+import { BookOpen, Home, TvMinimalPlay, UserRound} from 'lucide-react'
 
 export const useRoutes = () =>{
     
@@ -14,6 +14,10 @@ export const useRoutes = () =>{
             label : 'My Courses',
             icon : BookOpen,
             route :'/courses'
+        },
+        {
+            label : 'My Courses',icon : TvMinimalPlay,route:'/mycourses'
+
         },
         {
             label : 'Profile',

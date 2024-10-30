@@ -1,3 +1,4 @@
+import UserLayout from "@/components/app/user/navbar/userLayout";
 import MyCourseLayot from "@/components/app/user/profile/MyCourseLayot";
 import MyCoursesList from "@/components/app/user/profile/MyCoursesList";
 import { enrolledCourses, Course } from "@/types/api-return";
@@ -16,9 +17,9 @@ const MyCourse = () => {
   console.log(courses)
   if (isLoading) {
     return (
-      <MyCourseLayot>
+  
         <div className="flex items-center justify-center p-8">Loading...</div>
-      </MyCourseLayot>
+  
     );
   }
 
@@ -31,7 +32,8 @@ const MyCourse = () => {
   }
 
   return (
-    <MyCourseLayot>
+    <UserLayout>
+
       <section className="sm:flex sm:flex-col lg:flex sm:space-y-8 sm:px-3 sm:py-2 mb-16">
         {courses && courses.length > 0 ? (
           courses.map((enrolledCourse) => {
@@ -49,7 +51,8 @@ const MyCourse = () => {
           <div className="text-center py-8">No courses enrolled</div>
         )}
       </section>
-    </MyCourseLayot>
+  
+    </UserLayout>
   );
 };
 
