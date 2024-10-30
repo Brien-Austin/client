@@ -36,4 +36,12 @@ export interface Course {
   chapters?: [];
 }
 
+export interface enrolledCourses {
+ 
+  completedChapters : string[]
+  course : Course | Course[]
+  enrolledDate : Date
+  isCompleted : boolean
+}
+
 

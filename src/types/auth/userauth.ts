@@ -43,6 +43,21 @@ export const courseSchema = z.object({
     })
 })
 
+export const editProfileSchema = z.object({
+    username : z.string({
+        message : "Please enter your username"
+    }).min(5,{message : "Username must be minimum 5 characters"}),
+    age :z.coerce.number({
+        message : "Age is required"
+    }).min(0, {message : "Users should be atleast 15 years old"}).transform((value)=>Number(value)),
+
+    contactNumber : z.coerce.number({
+        message : "Contact number is required"
+    }).min(10, {
+        message : "Contact number should be at least 10 characters"
+    }).transform((value)=>Number(value))
+})
+
 export type InstructorType = {
     _id: string;
     email: string;

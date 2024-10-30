@@ -18,6 +18,9 @@ import InstructorWebminars from './pages/instructor/webminars'
 import InstructorEnrollments from './pages/instructor/enrollments'
 import InstructorSettings from './pages/instructor/settings'
 import InstructorCourses from './pages/instructor/courses'
+import MyCourse from './pages/user/mycourse'
+import EnrolledCourse from './pages/enrolledcourse'
+
 
 const App = () => {
   return (
@@ -27,6 +30,7 @@ const App = () => {
       
       <Route path='/' element={<Home/>}/>
       <Route path='/profile' element={<Profile/>}/>
+      <Route path='/mycourses' element={<MyCourse/>}/>
       <Route path='/onboard' element={<OnBoard/>}/>
       <Route path='/auth' element={<Auth/>}/>
       <Route path='/courses' element={<Courses/>}/>
@@ -43,6 +47,7 @@ const App = () => {
       <Route path='/instructor/webminars' element={<InstructorWebminars/>}/>
       <Route path='/instructor/enrollments' element={<InstructorEnrollments/>}/>
       <Route path='/instructor/settings' element={<InstructorSettings/>}/>
+      <Route path='/mycourses/course/:id' element={<EnrolledCourse/>}/>
     </Routes>
    </Router>
   )
