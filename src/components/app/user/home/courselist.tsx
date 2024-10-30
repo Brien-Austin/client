@@ -7,7 +7,7 @@ import Course   from "./course";
 
 const CourseList = () => {
 
-  const {data:courses} = useQuery<CourseType[]>({
+  const {data:courses,isFetched} = useQuery<CourseType[]>({
     queryKey : ['fetch courses'],
     queryFn : (async()=>{
       const response = await appApiClient.get(FETCH_COURSES)
@@ -19,12 +19,18 @@ const CourseList = () => {
   console.log(courses)
   return (
     <section className="flex space-x-5 overflow-x-auto ">
-       {
-        courses?.map((c,i)=>(
-          <Course key={i} title={c.title} description={c.description!} id={c._id} imageurl={c.imageurl!} tags={c.tags!}/>
-        ))
-       }
-     
+      {
+        isFetched ? <> {
+          courses?.map((c,i)=>(
+            <Course key={i} title={c.title} description={c.description!} id={c._id} imageurl={c.imageurl!} tags={c.tags!}/>
+          ))
+         }
+       </> : 
+       <div className="flex space-x-5 overflow-x-auto">
+        <div className="flex-shrink-0 w-56 h-64  bg-neutral-50 animate-pulse rounded-md p-1 flex flex-col "/>
+        <div className="flex-shrink-0 w-56 h-64  bg-neutral-50 animate-pulse rounded-md p-1 flex flex-col "/>
+       </div>
+      }
     </section>
   );
 };
