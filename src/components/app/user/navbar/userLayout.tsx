@@ -3,11 +3,12 @@ import NavBar from './navbar'
 
 
 import { useNavigate } from 'react-router-dom'
-import { getUserAccessToken } from '@/utils/localstorage'
+import { getUserAccessToken, LoadCookie } from '@/utils/localstorage'
 
 const UserLayout = ({children} : {children : React.ReactNode}) => {
 
   const router = useNavigate()
+  LoadCookie()
   const token = getUserAccessToken();
   useEffect(() => {
     if (!token) {

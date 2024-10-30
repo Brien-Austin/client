@@ -8,7 +8,8 @@ import { Loader2 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { apiClient } from "@/utils/api";
-import { REGISTER_URL } from "@/utils/constants";
+import { API_URL, REGISTER_URL } from "@/utils/constants";
+import { FcGoogle } from "react-icons/fc";
 
 interface RegisterProps {
   setAuthState: (state: AuthState) => void;
@@ -23,7 +24,10 @@ const Register: React.FC<RegisterProps> = ({ setAuthState }) => {
     
     const form = useForm<z.infer<typeof registerShcema>>({
         resolver: zodResolver(registerShcema),
-    });
+    }); const handleGoogleLogin = () => {
+       
+        window.location.href = `${API_URL}/api/v1/auth/user/google`;
+      };
 
     const { errors, isSubmitting, isValid } = form.formState;
 
@@ -110,8 +114,12 @@ const Register: React.FC<RegisterProps> = ({ setAuthState }) => {
                     )}
                 </button>
             </form>
+            <button  onClick={handleGoogleLogin} className="mx-auto  mt-3 px-4 py-3 flex justify-center items-center gap-2 text-neutral-700 text-sm font-medium bg-white hover:bg-neutral-100 border border-neutral-300 rounded-lg shadow-sm transition-colors duration-200">
+    <FcGoogle className="flex-shrink-0" size={22}/>
+    Continue with Google</button>
+   
 
-            <p className="text-center mt-4">
+            <p className="text-center mt-6 text-sm">
                 Already a user? <span onClick={handleLogin} className="underline decoration-purple-600 text-purple-600 cursor-pointer">Login</span>
             </p>
         </section>

@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import Cookie  from "js-cookie";
+
+
 // Admin Token Management
 export function getAdminAccessToken() {
   return localStorage.getItem('adminAccessToken');
@@ -16,6 +19,22 @@ export function setAdminAccessToken(token: any) {
 export function setAdminRefreshToken(token: any) {
   localStorage.setItem('adminRefreshToken', token);
 }
+
+export async function LoadCookie() {
+  const at = Cookie.get('accessToken');
+  const rt = Cookie.get('accessToken');
+  if(at !== undefined) {
+    localStorage.setItem('userAccessToken', at)
+  }
+
+  if(rt !== undefined) {
+    localStorage.setItem('userRefreshToken', rt)
+  }
+
+  return {at,rt}
+}
+
+
 
 export function cleanAdminTokens() {
   localStorage.removeItem('adminAccessToken');
