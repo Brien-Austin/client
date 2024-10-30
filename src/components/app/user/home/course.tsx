@@ -30,7 +30,7 @@ const Course: React.FC<CourseProps> = ({id,
         </div>
       )}
       <div className="mt-2 flex-grow">
-        <h1 className="text-purple-600 font-[600]">{title}</h1>
+        <h1 className="text-purple-600 font-[600] line-clamp-1">{title}</h1>
         <h1 className="truncate text-muted-foreground text-xs mt-1">
           {description}
         </h1>
