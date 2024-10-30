@@ -5,8 +5,9 @@ import { Image } from 'lucide-react';
 import ChaptersList from '@/components/app/user/course/chapterslist';
 import { Course as CourseType } from '@/types/api-return';
 import appApiClient from '@/utils/auth';
-import { USER_URL } from '@/utils/constants';
+import { USER_ENROLL_FREE_COURSE, USER_URL } from '@/utils/constants';
 import { useAuth } from '@/hooks/useAuth';
+import toast from 'react-hot-toast';
 
 const Course: React.FC = () => {
   const { id: courseId } = useParams();
@@ -23,8 +24,24 @@ const Course: React.FC = () => {
     }
   });
 
+  async function handleEnroll(free:boolean | undefined) {
+    try {
+      if(free){
+        const response = await appApiClient.post(`${USER_ENROLL_FREE_COURSE}/${courseId}`)
+        console.log(response)
+      
+      toast.success("Enrolled successfully")
+      }
+      
+    } catch (error) {
+      console.log('[COURSE_ENROLL_ERROR]', error);
+      toast.error('Error enrolling course')
+      
+    }
+  }
+
   return (
-    <article className="w-full min-h-screen bg-white sm:px-4 sm:py-4 pb-20">
+    <article className="w-full min-h-screen bg-white sm:px-4 sm:py-4 mb-20">
       <header>
         <h1 className='text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-purple-700'>
           {course?.title}
@@ -74,10 +91,10 @@ const Course: React.FC = () => {
 
       <nav className="fixed bottom-0 bg-white w-full h-16 z-50 border shadow-sm p-2 border-neutral-100 left-0 flex justify-center items-center">
         <div className="flex justify-between w-full max-w-md space-x-2">
-          <button onClick={() => navigate(-1)} className="px-3 py-2 w-full border ring-1 ring-purple-500 rounded-lg">
+          <button onClick={() => navigate(-1)} className="px-3 py-2 w-full border ring-1 ring-purple-500 rounded-full">
             <span className="text-purple-700 font-semibold">Back</span>
           </button>
-          <button className="px-3 py-2 w-full bg-gradient-to-r from-purple-500 to-purple-600 text-white font-semibold rounded-lg">
+          <button onClick={()=>handleEnroll(course?.isFree)} className="px-3 py-2 w-full bg-gradient-to-r from-purple-500 to-purple-600 text-white font-semibold rounded-full">
            {
             course?.isFree ? <h1>Enroll</h1> : "Buy this course"
            }

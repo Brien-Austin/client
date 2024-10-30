@@ -21,7 +21,7 @@ const Course: React.FC<CourseProps> = ({id,
   const navigate = useNavigate()
   console.log(tags)
   return (
-    <section onClick={()=>{navigate(`/course/${id}`)}} className="flex-shrink-0 w-56 h-64 border border-neutral-200 bg-white rounded-md p-1 flex flex-col shadow-sm ">
+    <section  className="flex-shrink-0 w-56 h-64 border border-neutral-200 bg-white rounded-md p-1 flex flex-col shadow-sm ">
       {imageurl ? (
         <img src={imageurl} className="w-full shadow-sm h-3/6" alt="" />
       ) : (
@@ -36,8 +36,8 @@ const Course: React.FC<CourseProps> = ({id,
         </h1>
       </div>
       <div className="mt-4">
-        <button className="flex justify-center items-center w-full py-2 text-white rounded-sm bg-gradient-to-b from-purple-500 to-purple-600">
-          Enroll
+        <button onClick={()=>{navigate(`/course/${id}`)}} className="flex justify-center items-center w-full py-2 text-white rounded-sm bg-gradient-to-b from-purple-500 to-purple-600">
+          View Details
         </button>
       </div>
     </section>

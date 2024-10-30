@@ -20,3 +20,4 @@ export const INS_CREATE_COURSE = `${INSTRUCTOR}/create-course`
 export const INSTRUCTOR_PROFILE_URL = `${INSTRUCTOR}/profile`
 export const USER_COMPLETE_PROFILE = `${USER_URL}/complete-profile`
 export const USER_MY_COURSES = `${USER_URL}/my-courses`
+export const USER_ENROLL_FREE_COURSE = `${USER_URL}/enroll`

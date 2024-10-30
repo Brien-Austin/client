@@ -13,7 +13,7 @@ const MyCourse = () => {
       return response.data.data;
     },
   });
-
+  console.log(courses)
   if (isLoading) {
     return (
       <MyCourseLayot>
