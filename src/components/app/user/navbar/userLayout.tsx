@@ -10,6 +10,7 @@ const UserLayout = ({children} : {children : React.ReactNode}) => {
   const router = useNavigate()
   LoadCookie()
   const token = getUserAccessToken();
+  console.log(token)
   useEffect(() => {
     if (!token) {
       router("/onboard");

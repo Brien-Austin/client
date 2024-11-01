@@ -25,7 +25,7 @@ const Login:React.FC<LoginProps> = ({setAuthState}) => {
     })
     const handleGoogleLogin = () => {
        
-        window.location.href = `${API_URL}/api/v1/auth/user/google`;
+        window.location.href = `${API_URL}/api/v1/auth/user/google/callback`;
       };
     const {errors} = form.formState
 
