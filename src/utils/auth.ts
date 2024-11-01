@@ -1,26 +1,21 @@
 import axios from "axios"
 
 import { API_URL } from "./constants"
-import { cleanUserTokens, setUserAccessToken, setUserRefreshToken } from "./localstorage"
+import { cleanUserTokens, getUserAccessToken, getUserRefreshToken, LoadCookie, setUserAccessToken, setUserRefreshToken } from "./localstorage"
 import toast from "react-hot-toast";
-import Cookie  from "js-cookie";
-import { redirect } from "react-router-dom";
 
 
 const appApiClient = axios.create({
-    baseURL : API_URL,
-    withCredentials: true
+    baseURL : API_URL
 })
 
 
 
 appApiClient.interceptors.request.use(
     (config) => {
-      
-      const token = Cookie.get('accessToken');
-      if(!token){
-        redirect("/onboard")
-      }
+      LoadCookie()
+      console.log('Hi form api')
+      const token = getUserAccessToken();
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }
@@ -38,7 +33,7 @@ appApiClient.interceptors.response.use(
       
         if(error.response && error.response.status === 400){
             try {
-                const refreshToken = Cookie.get('refreshToken')
+                const refreshToken = getUserRefreshToken()
                 if(refreshToken){
                     const response = await appApiClient.post("/refresh-token",{refreshToken})
                     setUserRefreshToken(response.data.refreshToken);

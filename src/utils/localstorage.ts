@@ -20,18 +20,33 @@ export function setAdminRefreshToken(token: any) {
   localStorage.setItem('adminRefreshToken', token);
 }
 
-export async function LoadCookie() {
-  const at = Cookie.get('accessToken');
-  const rt = Cookie.get('refreshToken');
-  if(at !== undefined) {
-    localStorage.setItem('userAccessToken', at)
-  }
+export function LoadCookie() {
+  try {
+    // Retrieve tokens from cookies
+    const accessToken = Cookie.get('accessToken');
+    const refreshToken = Cookie.get('refreshToken');
 
-  if(rt !== undefined) {
-    localStorage.setItem('userRefreshToken', rt)
-  }
+    // Store tokens in localStorage if they exist
+    if (accessToken) {
+      localStorage.setItem('userAccessToken', accessToken);
+    }
 
-  return {at,rt}
+    if (refreshToken) {
+      localStorage.setItem('userRefreshToken', refreshToken);
+    }
+
+    // Return an object with the tokens, using empty string if undefined
+    return {
+      accessToken: accessToken || '',
+      refreshToken: refreshToken || ''
+    };
+  } catch (error) {
+    console.error('Error loading cookies:', error);
+    return {
+      accessToken: '',
+      refreshToken: ''
+    };
+  }
 }
 
 

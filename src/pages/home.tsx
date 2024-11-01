@@ -8,10 +8,17 @@ import CourseList from "@/components/app/user/home/courselist";
 import CategoryList from "@/components/app/user/home/catergorylist";
 
 import { ChevronRight } from "lucide-react";
+import { getUserAccessToken, LoadCookie } from "@/utils/localstorage";
 
 const Home = () => {
   const { user, isLoading } = useAuth();
   const router = useNavigate();
+  const {accessToken,refreshToken} = LoadCookie()
+  
+  
+  const at = getUserAccessToken()
+  console.log('Access Token',at)
+  console.log('Refresh Token',accessToken,'Refresh Token', refreshToken)
   console.log('User : ',user)
  
 
