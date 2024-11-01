@@ -22,7 +22,7 @@ export function setAdminRefreshToken(token: any) {
 
 export async function LoadCookie() {
   const at = Cookie.get('accessToken');
-  const rt = Cookie.get('accessToken');
+  const rt = Cookie.get('refreshToken');
   if(at !== undefined) {
     localStorage.setItem('userAccessToken', at)
   }
