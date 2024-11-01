@@ -4,6 +4,7 @@ import { API_URL } from "./constants"
 import { cleanUserTokens, setUserAccessToken, setUserRefreshToken } from "./localstorage"
 import toast from "react-hot-toast";
 import Cookie  from "js-cookie";
+import { redirect } from "react-router-dom";
 
 
 const appApiClient = axios.create({
@@ -17,7 +18,9 @@ appApiClient.interceptors.request.use(
     (config) => {
       
       const token = Cookie.get('accessToken');
-      console.log(token)
+      if(!token){
+        redirect("/onboard")
+      }
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }
