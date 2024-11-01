@@ -13,8 +13,8 @@ const appApiClient = axios.create({
 
 appApiClient.interceptors.request.use(
     (config) => {
-      LoadCookie()
-      console.log('Hi form api')
+      const {refreshToken,accessToken} = LoadCookie()
+      console.log('Hi form api ', 'AccessToken', accessToken, 'RefreshToken',refreshToken)
       const token = getUserAccessToken();
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
