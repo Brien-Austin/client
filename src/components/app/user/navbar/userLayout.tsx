@@ -3,20 +3,20 @@ import NavBar from './navbar'
 
 
 import { useNavigate } from 'react-router-dom'
-import { getUserAccessToken, LoadCookie } from '@/utils/localstorage'
+import { LoadCookie } from '@/utils/localstorage'
 
 const UserLayout = ({children} : {children : React.ReactNode}) => {
 
   const router = useNavigate()
-  const{accessToken,refreshToken}=LoadCookie()
+  const {accessToken,refreshToken} = LoadCookie()
   console.log(accessToken,refreshToken)
-  const token = getUserAccessToken();
-  useEffect(() => {
-    if (!token) {
-      router("/onboard");
+  const at = localStorage.getItem('userAccessToken')
+  useEffect(()=>{
+    if(!at){
+      router("/onboard")
     }
-  }, [router, token]);
-  
+    
+  })
   
   return (
     <main className='h-screen w-full ' >
