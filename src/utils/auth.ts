@@ -1,13 +1,13 @@
 import axios from "axios"
 
 import { API_URL } from "./constants"
-import { cleanUserTokens,  LoadCookie, setUserAccessToken, setUserRefreshToken } from "./localstorage"
+import { cleanUserTokens, getUserAccessToken, getUserRefreshToken, LoadCookie, setUserAccessToken, setUserRefreshToken } from "./localstorage"
 import toast from "react-hot-toast";
 
 
 const appApiClient = axios.create({
     baseURL : API_URL,
-    withCredentials: true
+    
 })
 
 
@@ -16,9 +16,9 @@ appApiClient.interceptors.request.use(
     (config) => {
       const {refreshToken,accessToken} = LoadCookie()
       console.log('Hi form api ', 'AccessToken', accessToken, 'RefreshToken',refreshToken)
-     
-      if (accessToken) {
-        config.headers.Authorization = `Bearer ${accessToken}`;
+      const token = getUserAccessToken();
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
       }
       return config;
     },
@@ -34,7 +34,7 @@ appApiClient.interceptors.response.use(
       
         if(error.response && error.response.status === 400){
             try {
-               const {refreshToken} = LoadCookie()
+                const refreshToken = getUserRefreshToken()
                 if(refreshToken){
                     const response = await appApiClient.post("/refresh-token",{refreshToken})
                     setUserRefreshToken(response.data.refreshToken);
