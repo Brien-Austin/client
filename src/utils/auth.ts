@@ -17,6 +17,7 @@ appApiClient.interceptors.request.use(
     (config) => {
       
       const token = Cookie.get('accessToken');
+      console.log(token)
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }
