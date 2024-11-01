@@ -1,6 +1,8 @@
 import UserLayout from "@/components/app/user/navbar/userLayout";
 import { useAuth } from "@/hooks/useAuth";
 import { getUserName } from "@/utils/get-username";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import CourseList from "@/components/app/user/home/courselist";
 import CategoryList from "@/components/app/user/home/catergorylist";
@@ -9,7 +11,15 @@ import { ChevronRight } from "lucide-react";
 
 const Home = () => {
   const { user, isLoading } = useAuth();
+  const router = useNavigate();
+  console.log('User : ',user)
+ 
 
+  useEffect(() => {
+    if (!user && !isLoading) {
+      router("/auth", { replace: true });
+    }
+  }, [router, user, isLoading]);
 
   return (
     <UserLayout>
