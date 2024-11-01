@@ -8,7 +8,8 @@ import { getUserAccessToken, LoadCookie } from '@/utils/localstorage'
 const UserLayout = ({children} : {children : React.ReactNode}) => {
 
   const router = useNavigate()
-  LoadCookie()
+  const{accessToken,refreshToken}=LoadCookie()
+  console.log(accessToken,refreshToken)
   const token = getUserAccessToken();
   useEffect(() => {
     if (!token) {
