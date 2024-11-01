@@ -1,20 +1,21 @@
 import axios from "axios"
 
 import { API_URL } from "./constants"
-import { cleanUserTokens, LoadCookie, setUserAccessToken, setUserRefreshToken } from "./localstorage"
+import { cleanUserTokens, setUserAccessToken, setUserRefreshToken } from "./localstorage"
 import toast from "react-hot-toast";
 import Cookie  from "js-cookie";
 
 
 const appApiClient = axios.create({
-    baseURL : API_URL
+    baseURL : API_URL,
+    withCredentials: true
 })
 
 
 
 appApiClient.interceptors.request.use(
     (config) => {
-      LoadCookie()
+      
       const token = Cookie.get('accessToken');
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
