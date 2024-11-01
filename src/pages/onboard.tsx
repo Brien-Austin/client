@@ -1,10 +1,14 @@
 
+import { getUserAccessToken, LoadCookie } from '@/utils/localstorage';
 import { Book, Trophy, GraduationCap, Rocket, ArrowRight } from 'lucide-react'
 
 import { useNavigate } from 'react-router-dom'
 
 export default function ImprovedOnboardingScreen1() {
     const navigate = useNavigate()
+    LoadCookie()
+    const token = getUserAccessToken();
+    console.log(token)
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-600 via-purple-700 to-indigo-800 text-white flex flex-col">
       {/* Top Section */}
