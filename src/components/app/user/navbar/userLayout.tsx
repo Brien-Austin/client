@@ -2,14 +2,38 @@ import React, { useEffect } from 'react'
 import NavBar from './navbar'
 
 
-import { useNavigate } from 'react-router-dom'
-import { LoadCookie } from '@/utils/localstorage'
+import { useLocation, useNavigate } from 'react-router-dom'
+
 
 const UserLayout = ({children} : {children : React.ReactNode}) => {
 
-  const router = useNavigate()
-  const {accessToken,refreshToken} = LoadCookie()
-  console.log(accessToken,refreshToken)
+ 
+
+  const router = useNavigate();
+  const location = useLocation();
+
+ 
+useEffect(()=>{
+  setTimeout(()=>{
+ 
+    const queryParams = new URLSearchParams(location.search);
+    const accessToken = queryParams.get('accessToken');
+    const refreshToken = queryParams.get('refreshToken');
+  
+    if (accessToken && refreshToken) {
+      // Store tokens in local storage
+      localStorage.setItem('userAccessToken', accessToken);
+      localStorage.setItem('userRefreshToken', refreshToken);
+  
+      // Remove the tokens from the URL
+      const newUrl = window.location.pathname; // Only keep the path without query parameters
+      window.history.replaceState({}, document.title, newUrl);
+
+   
+  }},1000)
+    
+},[location.search])
+  
   const at = localStorage.getItem('userAccessToken')
   useEffect(()=>{
     if(!at){
