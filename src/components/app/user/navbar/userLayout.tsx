@@ -16,7 +16,7 @@ const UserLayout = ({children} : {children : React.ReactNode}) => {
       router("/onboard")
     }
     
-  })
+  },[at,router])
   
   return (
     <main className='h-screen w-full ' >

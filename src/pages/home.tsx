@@ -1,41 +1,45 @@
 import UserLayout from "@/components/app/user/navbar/userLayout";
 import { useAuth } from "@/hooks/useAuth";
 import { getUserName } from "@/utils/get-username";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import CourseList from "@/components/app/user/home/courselist";
 import CategoryList from "@/components/app/user/home/catergorylist";
 
 import { ChevronRight } from "lucide-react";
-import { getUserAccessToken, LoadCookie } from "@/utils/localstorage";
+import { getUserAccessToken } from "@/utils/localstorage";
 
 const Home = () => {
   const { user, isLoading } = useAuth();
   const router = useNavigate();
   const location = useLocation();
-  useEffect(() => {
-    // Extract tokens from the URL
+  const [loading,setLoading] = useState<boolean>(false)
+ 
+useEffect(()=>{
+  setTimeout(()=>{
+    setLoading(true)
     const queryParams = new URLSearchParams(location.search);
     const accessToken = queryParams.get('accessToken');
     const refreshToken = queryParams.get('refreshToken');
-
+  
     if (accessToken && refreshToken) {
       // Store tokens in local storage
       localStorage.setItem('userAccessToken', accessToken);
       localStorage.setItem('userRefreshToken', refreshToken);
-
+  
       // Remove the tokens from the URL
       const newUrl = window.location.pathname; // Only keep the path without query parameters
       window.history.replaceState({}, document.title, newUrl);
-    }
-  }, [location]);
-  const {accessToken,refreshToken} = LoadCookie()
-  
+      setLoading(false)
+   
+  }},1000)
+    
+},[location.search])
   
   const at = getUserAccessToken()
   console.log('Access Token',at)
-  console.log('Refresh Token',accessToken,'Refresh Token', refreshToken)
+  
   console.log('User : ',user)
  
 
@@ -44,6 +48,12 @@ const Home = () => {
       router("/auth", { replace: true });
     }
   }, [router, user, isLoading]);
+
+  if(loading){
+    return (
+      <>Loading ...</>
+    )
+  }
 
   return (
     <UserLayout>
