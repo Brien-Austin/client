@@ -1,7 +1,7 @@
 import UserLayout from "@/components/app/user/navbar/userLayout";
 import { useAuth } from "@/hooks/useAuth";
 import { getUserName } from "@/utils/get-username";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import CourseList from "@/components/app/user/home/courselist";
@@ -14,11 +14,11 @@ const Home = () => {
   const { user, isLoading } = useAuth();
   const router = useNavigate();
   const location = useLocation();
-  const [loading,setLoading] = useState<boolean>(false)
+
  
 useEffect(()=>{
   setTimeout(()=>{
-    setLoading(true)
+ 
     const queryParams = new URLSearchParams(location.search);
     const accessToken = queryParams.get('accessToken');
     const refreshToken = queryParams.get('refreshToken');
@@ -31,7 +31,7 @@ useEffect(()=>{
       // Remove the tokens from the URL
       const newUrl = window.location.pathname; // Only keep the path without query parameters
       window.history.replaceState({}, document.title, newUrl);
-      setLoading(false)
+
    
   }},1000)
     
@@ -49,11 +49,7 @@ useEffect(()=>{
     }
   }, [router, user, isLoading]);
 
-  if(loading){
-    return (
-      <>Loading ...</>
-    )
-  }
+
 
   return (
     <UserLayout>
