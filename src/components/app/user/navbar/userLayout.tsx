@@ -7,37 +7,40 @@ const UserLayout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
 
   useEffect(() => {
-    
-    const timeoutId = setTimeout(() => {
+    const handleAuth = async () => {
+      // Check URL parameters first
       const queryParams = new URLSearchParams(location.search);
       const accessToken = queryParams.get('accessToken');
       const refreshToken = queryParams.get('refreshToken');
 
       if (accessToken && refreshToken) {
-
+        // Store tokens
         localStorage.setItem('userAccessToken', accessToken);
         localStorage.setItem('userRefreshToken', refreshToken);
-
-       
-        const newUrl = window.location.pathname; 
+        
+        // Clean URL
+        const newUrl = window.location.pathname;
         window.history.replaceState({}, document.title, newUrl);
+        
+        // Don't redirect since we just got valid tokens
+        return;
       }
-    }, 1000);
 
-    return () => clearTimeout(timeoutId); 
-  }, [location.search]);
+      // If no URL params, check localStorage
+      const storedAccessToken = localStorage.getItem('userAccessToken');
+      
+      if (!storedAccessToken) {
+        router('/onboard');
+      }
+    };
 
-  useEffect(() => {
-    const at = localStorage.getItem('userAccessToken');
-
-    
-    if (!at) {
-      router('/onboard');
-    }
-  }, [router]); 
+    // Small delay to ensure localStorage is updated before checks
+    const timeoutId = setTimeout(handleAuth, 100);
+    return () => clearTimeout(timeoutId);
+  }, [location.search, router]);
 
   return (
-    <main className='h-screen w-full'>
+    <main className="h-screen w-full">
       <NavBar />
       <div className="mt-5 lg:px-10 sm:px-5">
         {children}
