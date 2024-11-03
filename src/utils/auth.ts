@@ -32,7 +32,7 @@ appApiClient.interceptors.response.use(
     (response)=>response,
     async(error) =>{
       
-        if(error.response && error.response.status === 400){
+        if(error.response && error.response.status === 401){
             try {
                 const refreshToken = getUserRefreshToken()
                 if(refreshToken){
@@ -42,6 +42,7 @@ appApiClient.interceptors.response.use(
                 }
                 
             } catch (error) {
+              console.log(error)
                 cleanUserTokens()
                 toast.error('Session expired !!! Login Again')
             

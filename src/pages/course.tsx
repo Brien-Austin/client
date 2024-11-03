@@ -8,6 +8,7 @@ import appApiClient from '@/utils/auth';
 import { USER_ENROLL_FREE_COURSE, USER_URL } from '@/utils/constants';
 import { useAuth } from '@/hooks/useAuth';
 import toast from 'react-hot-toast';
+import { AxiosError } from 'axios';
 
 const Course: React.FC = () => {
   const { id: courseId } = useParams();
@@ -24,19 +25,38 @@ const Course: React.FC = () => {
     }
   });
 
-  async function handleEnroll(free:boolean | undefined) {
+  async function handleEnroll(free: boolean | undefined) {
     try {
-      if(free){
-        const response = await appApiClient.post(`${USER_ENROLL_FREE_COURSE}/${courseId}`)
+      if (free) {
+        const response = await appApiClient.post(`${USER_ENROLL_FREE_COURSE}/${courseId}`);
         console.log(response)
-      
-      toast.success("Enrolled successfully")
+        toast.success("Enrolled successfully");
       }
-      
     } catch (error) {
       console.log('[COURSE_ENROLL_ERROR]', error);
-      toast.error('Error enrolling course')
       
+  
+      const axiosError = error as AxiosError;
+      
+      if (axiosError.response) {
+        
+        switch (axiosError.response.status) {
+          case 400:
+            toast.error("User already enrolled");
+            break;
+          case 401:
+            toast.error("Please login to enroll");
+            break;
+          case 403:
+            toast.error("You don't have permission to enroll");
+            break;
+          default:
+            toast.error("Error enrolling in course");
+        }
+      } else {
+     
+        toast.error("Unable to connect to server");
+      }
     }
   }
 
