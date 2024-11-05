@@ -106,7 +106,7 @@ const Course: React.FC = () => {
         <h2 className='text-lg font-bold text-neutral-600'>
           Chapters
         </h2>
-        <ChaptersList chapters={course?.chapters} />
+       {course?.chapters &&  <ChaptersList chapters={course?.chapters} />}
       </section>
 
       <nav className="fixed bottom-0 bg-white w-full h-16 z-50 border shadow-sm p-2 border-neutral-100 left-0 flex justify-center items-center">

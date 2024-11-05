@@ -19,13 +19,24 @@ export type InstructorType = {
   }
   
 
- 
-
+ export  interface Chapter {
+    _id: string;
+    title: string;
+    description: string;
+    imageurl: string;
+    videoUrl: string;
+  }
+  
+export interface Instructor {
+  _id: string
+email: string
+profileUrl: string
+}
 
 export interface Course {
     _id : string
   title: string;
-  instructor: Types.ObjectId;
+  instructor: Instructor;
   imageurl?: string;
   price?: number;
   isFree: boolean;
@@ -33,9 +44,17 @@ export interface Course {
   studentsEnrolled: Types.ObjectId[];
   description?: string;
   tags?: Tag;
-  chapters?: [];
+  chapters?: Chapter[];
 }
 
+export interface UserCourse {
+  _id : string
+  completedChapters : string[];
+  enrolledDate : Date,
+  isCompleted : boolean
+  course : Course
+
+}
 export interface enrolledCourses {
  
   completedChapters : string[]

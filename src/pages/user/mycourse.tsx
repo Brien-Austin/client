@@ -1,5 +1,5 @@
 import UserLayout from "@/components/app/user/navbar/userLayout";
-import MyCourseLayot from "@/components/app/user/profile/MyCourseLayot";
+
 import MyCoursesList from "@/components/app/user/profile/MyCoursesList";
 import { enrolledCourses, Course } from "@/types/api-return";
 import appApiClient from "@/utils/auth";
@@ -19,23 +19,26 @@ const MyCourse = () => {
   if (isLoading) {
     return (
   
-        <div className="flex items-center justify-center p-8">Loading...</div>
+       <UserLayout>
+         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform"><div className="w-10 h-10 border-4 border-purple-600 rounded-full animate-spin border-t-transparent">
+          </div></div>
+       </UserLayout>
   
     );
   }
 
   if (error) {
     return (
-      <MyCourseLayot>
-        <div className="text-red-500 p-4">Failed to load courses</div>
-      </MyCourseLayot>
+      <UserLayout>
+        <div className="text-red-500 p-4 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform whitespace-nowrap ">Failed to load courses</div>
+      </UserLayout>
     );
   }
 
   return (
     <UserLayout>
 
-      <section className="sm:flex sm:flex-col lg:flex sm:space-y-8 sm:px-3 sm:py-2 mb-16">
+      <section className="sm:flex sm:flex-col lg:flex sm:space-y-8 sm:px-3 sm:py-5 sm:pb-24 ">
         {courses && courses.length > 0 ? (
           courses.map((enrolledCourse) => {
           

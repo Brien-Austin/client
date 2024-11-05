@@ -10,7 +10,7 @@ interface Chapter {
 }
 
 interface ChapterListProps{
-    chapters? : Chapter[]
+    chapters : Chapter[]
 }
 const ChaptersList:React.FC <ChapterListProps>= ({chapters}) => {
     console.log(chapters)
