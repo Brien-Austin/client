@@ -29,7 +29,7 @@ const EnrolledCourseLayout = ({ children }: { children: React.ReactNode }) => {
       <nav className=" z-50">
         <section className="fixed  top-0 w-full h-14">
           <div className="p-5 bg-white z-50 flex items-center gap-5">
-            <div onClick={() => navigate(-1)} className="p-2 rounded-md bg-gray-100 flex items-center justify-center border">
+            <div onClick={() => navigate(-1)} className="p-2 rounded-md bg-white flex items-center justify-center border border-neutral-100 shadow-sm">
               <ChevronLeft className="text-purple-600" />
             </div>
             <div className="text-lg text-neutral-700 font-[600]">
