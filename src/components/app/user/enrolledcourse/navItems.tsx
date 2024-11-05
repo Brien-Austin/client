@@ -21,7 +21,7 @@ const NavItems:React.FC<NavItemProps> = ({menu,icon : Icon}) => {
     }
 
   return (
-    <div className={cn("flex items-center gap-2", currentTab === menu && "border-b-2 pb-1 border-purple-500") } onClick={handleTabClick}>
+    <div className={cn("flex items-center gap-2 pb-1", currentTab === menu && "border-b-2 pb-1 border-purple-500") } onClick={handleTabClick}>
         <span>
             <Icon size={14}/>
         </span>
