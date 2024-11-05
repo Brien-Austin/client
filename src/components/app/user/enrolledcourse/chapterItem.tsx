@@ -9,7 +9,7 @@ interface EnrolledCourseChapterItemProps {
 const EnrolledCourseChapterItem: React.FC<EnrolledCourseChapterItemProps> = ({ chapter }) => {
     console.log(chapter)
     return (
-        <div className='border p-2 w-full h-36 rounded-lg shadow-sm border-purple-300 border-2 flex flex-col'>
+        <div className='border p-2 w-full h-36 rounded-lg shadow-sm border-purple-500 border-2 flex flex-col'>
             <div className="flex-grow">
                 <h1 className='text font-[600] text-purple-600'>{chapter.title}</h1>
                 <h1 className="mt-3 text-xs text-muted-foreground line-clamp-2">{chapter.description}</h1>
