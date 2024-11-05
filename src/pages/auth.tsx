@@ -1,8 +1,8 @@
 import Login from "@/components/app/user/auth/login"
 import Register from "@/components/app/user/auth/register"
-import { useAuth } from "@/hooks/useAuth"
+
 import { AuthState } from "@/types/auth/userauth"
-import { getUserAccessToken, LoadCookie } from "@/utils/localstorage"
+import { getUserAccessToken, getUserRefreshToken } from "@/utils/localstorage"
 import React from "react"
 
 
@@ -10,14 +10,13 @@ import React from "react"
 
 const Auth = () => {
     const [authState,setAuthState] =React.useState<AuthState>('Register')
-    const {accessToken,refreshToken} = LoadCookie()
+    
   
   
     const at = getUserAccessToken()
+    const rt = getUserRefreshToken()
     console.log('Access Token',at)
-    console.log('Access Token',accessToken,'Refresh Token', refreshToken)
-    const {user} = useAuth()
-    console.log('User',user)
+    console.log('Refresh Token',rt)
    
    
 

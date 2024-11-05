@@ -7,6 +7,7 @@ import { USER_MY_COURSES } from "@/utils/constants";
 import { useQuery } from "react-query";
 
 const MyCourse = () => {
+  
   const { data: courses, isLoading, error } = useQuery<enrolledCourses[]>({
     queryKey: ["fetch-my-course"],
     queryFn: async () => {

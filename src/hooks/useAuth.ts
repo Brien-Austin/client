@@ -13,9 +13,11 @@ export function useAuth() {
     },
     
   }
+ 
   
     
   );
+  console.log(userData)
 
   const {data:instructorData , isLoading : isInstructorLoading} = useQuery({
     queryKey : ['fetch-instructor'],
