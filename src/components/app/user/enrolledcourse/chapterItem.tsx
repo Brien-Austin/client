@@ -15,7 +15,7 @@ const EnrolledCourseChapterItem: React.FC<EnrolledCourseChapterItemProps> = ({ c
                 <h1 className="mt-3 text-xs text-muted-foreground line-clamp-2">{chapter.description}</h1>
             </div>
             <div className="flex justify-end mt-2">
-                <button className='text-xs flex items-center gap-2 text-white bg-gradient-to-b from-purple-500 to-purple-600 via-purple-400 px-3 py-2 rounded-full shadow-sm'>
+                <button className='text-xs flex items-center gap-2 text-white bg-gradient-to-b from-purple-600 to-purple-700 via-purple-500 px-3 py-2 rounded-full shadow-sm'>
                     <Play size={12} />
                     <h1 className="dropshadow">Watch now</h1>
                 </button>
