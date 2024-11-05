@@ -20,9 +20,12 @@ export const enrolledCourseSlice  = createSlice({
        setCurrentCourse : (state,action : PayloadAction<string>) =>{
         state.currentCourse = action.payload
 
+       },
+       setCurrentTab : (state , action : PayloadAction<string>) =>{
+        state.currentTab = action.payload
        }
     }
 })
 
-export const {setCurrentCourse} = enrolledCourseSlice.actions
+export const {setCurrentCourse,setCurrentTab} = enrolledCourseSlice.actions
 export default enrolledCourseSlice.reducer

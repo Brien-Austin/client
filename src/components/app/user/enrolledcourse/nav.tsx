@@ -1,12 +1,15 @@
+import { useMyCourseNav } from "@/hooks/useMyCourseNav"
+import NavItems from "./navItems"
 
 const Nav = () => {
+    const {menus} = useMyCourseNav()
   return (
-    <nav className=" border h-10 w-full flex gap-10 items-center overflow-x-auto ">
-        <h1>Home</h1>
-        <h1>Modules</h1>
-        <h1>Home</h1>
-        <h1>Modules</h1>
-        <h1>Home</h1>
+    <nav className="  h-10 w-full flex gap-5 items-center overflow-x-auto ">
+        {
+            menus.map((m,i)=>(
+                <NavItems menu={m.menu} key={i} icon={m.icon}/>
+            ))
+        }
 
       </nav>
   )
