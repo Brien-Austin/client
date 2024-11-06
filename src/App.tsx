@@ -20,6 +20,7 @@ import InstructorSettings from './pages/instructor/settings'
 import InstructorCourses from './pages/instructor/courses'
 import MyCourse from './pages/user/mycourse'
 import EnrolledCourse from './pages/enrolledcourse'
+import PlayerChapter from './components/app/user/enrolledcourse/playchapter'
 
 
 const App = () => {
@@ -48,6 +49,7 @@ const App = () => {
       <Route path='/instructor/enrollments' element={<InstructorEnrollments/>}/>
       <Route path='/instructor/settings' element={<InstructorSettings/>}/>
       <Route path='/mycourses/course/:id' element={<EnrolledCourse/>}/>
+      <Route path='/videojs' element={<PlayerChapter/>}/>
     </Routes>
    </Router>
   )
