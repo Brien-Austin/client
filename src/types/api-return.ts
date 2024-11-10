@@ -22,9 +22,11 @@ export type InstructorType = {
  export  interface Chapter {
     _id: string;
     title: string;
+    index : number
     description: string;
     imageurl: string;
     videoUrl: string;
+    isCompleted: boolean;
   }
   
 export interface Instructor {

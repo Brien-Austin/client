@@ -12,7 +12,7 @@ const CourseHome:React.FC<CourseHomeProps> = ({chapters,completedChapters}) => {
   return (
     <main>
       <section>
-        <EnrolledCourseChapters chapters={chapters}/>
+        <EnrolledCourseChapters completedChapters={completedChapters}chapters={chapters}/>
       </section>
     </main>
   )

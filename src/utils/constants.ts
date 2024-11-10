@@ -22,3 +22,4 @@ export const USER_COMPLETE_PROFILE = `${USER_URL}/complete-profile`
 export const USER_MY_COURSES = `${USER_URL}/my-courses`
 export const USER_ENROLL_FREE_COURSE = `${USER_URL}/enroll`
 export const USER_FETCH_MY_COURSE = `${USER_URL}/my-course`
+export const USER_FETCH_CHAPTER = `${USER_URL}/chapter`
