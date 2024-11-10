@@ -5,9 +5,13 @@ import { FETCH_COURSES } from "@/utils/constants";
 import { Course as CourseType} from "@/types/api-return";
 import Course   from "./course";
 
+
 const CourseList = () => {
 
+  
+ 
   const {data:courses,isFetched} = useQuery<CourseType[]>({
+    
     queryKey : ['fetch courses'],
     queryFn : (async()=>{
       const response = await appApiClient.get(FETCH_COURSES)
@@ -22,7 +26,7 @@ const CourseList = () => {
       {
         isFetched ? <> {
           courses?.map((c,i)=>(
-            <Course key={i} title={c.title} description={c.description!} id={c._id} imageurl={c.imageurl!} tags={c.tags!}/>
+            <Course chapters={c.chapters!} key={i} title={c.title} description={c.description!} id={c._id} imageurl={c.imageurl!} tags={c.tags!}/>
           ))
          }
        </> : 

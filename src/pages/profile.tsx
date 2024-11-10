@@ -21,7 +21,7 @@ import MyCourses from "@/components/app/user/profile/MyCourses";
 
 const Profile = () => {
   const { user, isLoading } = useAuth();
-  console.log(user);
+  console.log(user?.email);
   const router = useNavigate()
   const [loading,setIsLoading] = useState<boolean>(false)
   const [dialogOpen,setIsDialogOpen] = useState<boolean>(false)
@@ -67,19 +67,19 @@ const onSubmit = async (values: z.infer<typeof editProfileSchema>) => {
           <div className="h-12 animate-pulse bg-neutral-50 " />
         ) : (
           <section>
-            <Greet
-              name={user?.isProfileComplete ? user?.username : user?.email}
-            />
+           {user?.email &&  <Greet
+              name={ user?.email }
+            />}
 
             {user?.isProfileComplete ? (
               <>
                 <UserData noOfCourses={user?.courses.length} completed={0} />
                 
-                <EditProfile
+              {user.age && user.contactNumber &&   <EditProfile
                   age={user?.age}
                   contactNumber={user?.contactNumber}
                   username={user?.username}
-                />
+                />}
                 <MyCourses/>
                 <CustomerSupport />
                 <LogOut />

@@ -1,3 +1,4 @@
+import { User } from '@/types/api-return';
 import appApiClient from '@/utils/auth';
 import { INSTRUCTOR_PROFILE_URL, PROFILE_URL } from '@/utils/constants';
 import instructorApiClient from '@/utils/instructorauth';
@@ -5,11 +6,11 @@ import { useQuery } from 'react-query';
 
 
 export function useAuth() {
-  const { data: userData, status: queryStatus } = useQuery({
+  const { data: userData, status: queryStatus } = useQuery<User>({
     queryKey : ['fetch-user'],
     queryFn :     async()=>{
         const response = await appApiClient.get(PROFILE_URL);
-        return response.data
+        return response.data.user
     },
     
   }
@@ -28,7 +29,8 @@ export function useAuth() {
 
   })
 
-  const user = userData?.user
+
+  const user = userData
   const instructor = instructorData?.instructor
   const isAuthenticated = !!user;
   const isLoading = queryStatus === 'loading';

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Image } from 'lucide-react';
@@ -9,6 +9,7 @@ import { USER_ENROLL_FREE_COURSE, USER_URL } from '@/utils/constants';
 import { useAuth } from '@/hooks/useAuth';
 import toast from 'react-hot-toast';
 import { AxiosError } from 'axios';
+
 
 const Course: React.FC = () => {
   const { id: courseId } = useParams();
@@ -59,6 +60,14 @@ const Course: React.FC = () => {
       }
     }
   }
+  const isUserEnrolled = useMemo(() => {
+    return courseId && user?.courses.some(enrolledCourse =>
+      Array.isArray(enrolledCourse.course)
+        ? enrolledCourse.course.some(c => c._id === courseId)
+        : enrolledCourse.course._id === courseId
+    );
+  }, [courseId, user?.courses]);
+  console.log(isUserEnrolled)
 
   return (
    <main>
@@ -121,7 +130,8 @@ const Course: React.FC = () => {
       </section>
 
       <nav className="fixed bottom-0 bg-white w-full h-16 z-50 border shadow-sm p-2 border-neutral-100 left-0 flex justify-center items-center">
-        <div className="flex justify-between w-full max-w-md space-x-2">
+       {isUserEnrolled ? <div className='w-full px-3 py-2 text-white text-center rounded-full bg-gradient-to-r from-purple-600 to-purple-700 via-purple-500'>
+        Continue Learning </div> :  <div className="flex justify-between w-full max-w-md space-x-2">
           <button onClick={() => navigate(-1)} className="px-3 py-2 w-full border ring-1 ring-purple-500 rounded-full">
             <span className="text-purple-700 font-semibold">Back</span>
           </button>
@@ -130,7 +140,7 @@ const Course: React.FC = () => {
             course?.isFree ? <h1>Enroll</h1> : "Buy this course"
            }
           </button>
-        </div>
+        </div> }
       </nav>
     </article>}
    </main>

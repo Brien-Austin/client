@@ -62,7 +62,7 @@ useEffect(()=>{
               {" "}
               Welcome <br />{" "}
               <span className=" font-bold to-purple-600 text-xl">
-                {getUserName(user?.email)}!
+                {user?.email && getUserName(user?.email)}!
               </span>{" "}
             </h1>
           )}

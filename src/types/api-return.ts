@@ -66,3 +66,13 @@ export interface enrolledCourses {
 }
 
 
+export type User = {
+  username : string,
+  age  : number,
+  contactNumber : number,
+  email : string,
+  isProfileComplete : boolean,
+  profileUrl : string,
+  courses : UserCourse[]
+}
+
