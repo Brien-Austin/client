@@ -25,7 +25,7 @@ const NavItems:React.FC<NavItemProps> = ({menu,icon : Icon}) => {
         <span>
             <Icon size={14}/>
         </span>
-        <h1 className="text-xs">{menu}</h1>
+        <h1 className="sm:text-xs lg:text-sm">{menu}</h1>
     </div>
   )
 }

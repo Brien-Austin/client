@@ -69,7 +69,7 @@ const Course: React.FC<CourseProps> = ({
     console.log(title, isFull)
 
   return (
-    <section className="flex-shrink-0 w-56 h-64 border border-neutral-200 bg-white rounded-md p-1 flex flex-col shadow-sm">
+    <section className="sm:flex-shrink-0 sm:w-full sm:h-72 lg:h-80  lg:w-full   lg:h-48 border border-neutral-200 bg-white rounded-md p-1 sm:flex sm:flex-col sm:shadow-sm">
       {imageurl ? (
         <img
           src={imageurl}

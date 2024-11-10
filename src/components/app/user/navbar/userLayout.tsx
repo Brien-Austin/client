@@ -42,7 +42,7 @@ const UserLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <main className="h-screen w-full">
       <NavBar />
-      <div className="mt-5 lg:px-10 sm:px-5">
+      <div className="mt-5 lg:px-10 sm:px-5 lg:ml-64">
         {children}
       </div>
     </main>

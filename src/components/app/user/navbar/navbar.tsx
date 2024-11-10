@@ -1,29 +1,49 @@
-// import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-
+import { useAuth } from '@/hooks/useAuth'
 import { useRoutes } from '@/hooks/useRoutes'
-// import { useAuth } from '@/hooks/useAuth'
-
-
 import { cn } from '@/lib/utils'
-import { LucideIcon, } from 'lucide-react'
+import { cleanUserTokens } from '@/utils/localstorage'
+import { LogOut, LucideIcon } from 'lucide-react'
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 const NavBar = () => {
   const routes = useRoutes()
+  const {user} = useAuth()
+  const navigate = useNavigate()
+  async function logOut() {
+    cleanUserTokens()
+    navigate(0)
+  }
 
-  // const { user } = useAuth();
-    
   return (
     <>
-      {/* Top NavBar */}
-    
-
-      {/* Bottom NavBar */}
-      <nav className='fixed bottom-4 left-1/2 transform -translate-x-1/2 px-4 py-2 bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg border border-purple-100 rounded-full shadow-lg z-50'>
-        <section className='w-full h-10 flex items-center justify-around space-x-8'>
+      {/* Desktop Sidebar */}
+      <nav className='hidden lg:flex fixed left-0 top-0 h-full w-64 bg-white border-r border-purple-100 p-4 flex-col z-50'>
+        <div className='flex flex-col space-y-2 mt-4'>
           {routes.map((r, i) => (
-            <NavItems key={i} label={r.label} route={r.route} icon={r.icon} />
+            <SideBarItems key={i} label={r.label} route={r.route} icon={r.icon} />
+          ))}
+        </div>
+        <div className="fixed bottom-4 left-4 border w-12 h-12 rounded-full flex-shrink-0">
+          {
+            user?.email && user.profileUrl ?  <div className='flex items-center space-x-3 '>
+              <img src={user.profileUrl} className='w-full h-full rounded-full flex-shrink-0' alt="" />
+              
+              <div className="flex items-start flex-col space-y-1">
+                <h1 className='text-[16px] text-neutral-600 line-clamp-1 w-28'>{user.username}</h1>
+                <button onClick={logOut} className='text-xs flex items-center text-neutral-600'> <LogOut size={14}/>Logout</button>
+              </div>
+            
+            </div> : <div></div>
+          }
+        </div>
+      </nav>
+
+      {/* Mobile Bottom Nav */}
+      <nav className='lg:hidden fixed bottom-4 left-1/2 transform -translate-x-1/2 px-4 py-2 bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg border border-purple-100 rounded-full shadow-lg z-50'>
+        <section className='flex items-center justify-around space-x-8'>
+          {routes.map((r, i) => (
+            <NavItems key={i} label={r.label} route={r.route} icon={r.icon} /> 
           ))}
         </section>
       </nav>
@@ -37,9 +57,9 @@ interface NavItemProps {
   icon: LucideIcon
 }
 
-const NavItems: React.FC<NavItemProps> = ({ label, route, icon: Icon }) => {
+// Mobile Bottom Nav Items
+const NavItems: React.FC<NavItemProps> = ({  route, icon: Icon }) => {
   const pathname = useLocation()
-  console.log(label)
   const isActive = pathname.pathname === route;
 
   return (
@@ -57,42 +77,37 @@ const NavItems: React.FC<NavItemProps> = ({ label, route, icon: Icon }) => {
             "transition-all duration-300",
             isActive ? "text-purple-600" : "text-neutral-500 group-hover:text-purple-400"
           )}
-        />
-        
-        {/* <div
-          className={cn(
-            "absolute -bottom-1 left-1/2 transform -translate-x-1/2 h-1 w-1 rounded-full bg-purple-600 transition-all duration-300",
-            isActive ? "scale-100" : "scale-0"
-          )}
-        /> */}
+        /> 
       </div>
-      
-   
     </Link>
   );
 }
 
-// const SideBarItems: React.FC<NavItemProps> = ({ label, route, icon: Icon }) => {
-//   const pathname = useLocation();
-//   const isActive = pathname.pathname === route;
+// Desktop Sidebar Items
+const SideBarItems: React.FC<NavItemProps> = ({ label, route, icon: Icon }) => {
+  const pathname = useLocation();
+  const isActive = pathname.pathname === route;
 
-//   return (
-//     <Link
-//       to={route}
-//       className={cn(
-//         "flex items-center rounded-md text-purple-700 transition-all duration-300 group px-3 py-2",
-//         isActive ? "bg-purple-50" : "hover:bg-purple-50"
-//       )}
-//     >
-//       <div className="flex items-center space-x-2">
-//         <div className="bg-white opacity-70 z-50 border-white p-1 rounded-full shadow-sm flex items-center justify-center">
-//           <Icon size={16} />
-//         </div>
-//         <span className="flex-1 text-left truncate">{label}</span>
-//       </div>
-//     </Link>
-//   );
-// };
-
+  return (
+    <Link
+      to={route}
+      className={cn(
+        "flex items-center px-3 py-2.5 rounded-lg transition-all duration-300",
+        isActive 
+          ? "bg-purple-50 text-purple-600" 
+          : "text-neutral-600 hover:bg-purple-50/50 hover:text-purple-500"
+      )}
+    >
+      <Icon 
+        size={20} 
+        className={cn(
+          "transition-colors duration-300",
+          isActive ? "text-purple-600" : "text-neutral-500"
+        )}
+      />
+      <span className="ml-3 text-sm font-medium">{label}</span>
+    </Link>
+  );
+};
 
 export default NavBar

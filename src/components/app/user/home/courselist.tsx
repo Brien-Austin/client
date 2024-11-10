@@ -22,7 +22,7 @@ const CourseList = () => {
 
   console.log(courses)
   return (
-    <section className="flex space-x-5 overflow-x-auto ">
+    <section className="pb-24 sm:flex sm:flex-col sm:justify-center sm:items-center sm:gap-10 lg:grid lg:grid-cols-3 lg:gap-16 lg:space-x-0 ">
       {
         isFetched ? <> {
           courses?.map((c,i)=>(

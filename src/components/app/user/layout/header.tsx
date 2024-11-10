@@ -6,8 +6,8 @@ interface GreetProps {
 
 const Greet:React.FC<GreetProps> = ({name}) => {
   return (
-    <header className='  lg:text-3xl  text-slate-800 '>
-        Hey , <span className='font-[400] text-lg'>{name}</span>
+    <header className='  lg:text-2xl  text-slate-800 '>
+        Hey , <span className='font-[400] text-2xl'>{name}</span>
     </header>
   )
 }

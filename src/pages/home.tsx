@@ -7,7 +7,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import CourseList from "@/components/app/user/home/courselist";
 import CategoryList from "@/components/app/user/home/catergorylist";
 
-import { ChevronRight } from "lucide-react";
 import { getUserAccessToken } from "@/utils/localstorage";
 
 const Home = () => {
@@ -73,9 +72,9 @@ useEffect(()=>{
           <h1 className="text-neutral-600 font-[900] text-xl drop-shadow-sm ">
            Courses
           </h1>
-          <div className="text-sm text-white bg-purple-600  rounded-full p-1 font-semibold">
+          {/* <div className="sm:block lg:hidden text-sm text-white bg-purple-600  rounded-full p-1 font-semibold">
             <ChevronRight size={16}/>
-          </div>
+          </div> */}
           </div>
          
 
@@ -86,13 +85,12 @@ useEffect(()=>{
           </div>
         </section>
 
-        <section className="mt-6">
+        {/* <section className="mt-6">
         <h1 className="text-neutral-600 font-[900] text-xl drop-shadow-sm ">
-           Webminars
-           
+        
           </h1>
        
-        </section>
+        </section> */}
   
 
       </main>

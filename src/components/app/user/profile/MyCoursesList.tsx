@@ -30,7 +30,7 @@ const MyCoursesList: React.FC<MyCourseListProps> = ({
     }
     const totalProgres =chapters &&  Math.round(((progress/chapters) * 100))
   return (
-    <div key={id} className="w-full bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+    <div key={id} className="sm:w-full lg:w-4/5 lg:mx-auto bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow duration-300">
       <div className="flex flex-col md:flex-row h-full">
         {/* Image Section */}
         <div className="md:w-1/3 relative">

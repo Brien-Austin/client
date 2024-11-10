@@ -8,7 +8,7 @@ interface EnrolledCourseChaptersProps {
 }
 const EnrolledCourseChapters:React.FC<EnrolledCourseChaptersProps> = ({chapters,completedChapters}) => {
   return (
-    <div className='flex flex-col space-y-4 pb-20'>
+    <div className='flex flex-col sm:space-y-4 lg:space-y-8 pb-20 '>
         {chapters.map((c,i) =>(
             <EnrolledCourseChapterItem completedChapters={completedChapters} key={i} chapter={c || []}/>
         ))}
