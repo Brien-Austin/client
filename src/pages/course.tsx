@@ -17,7 +17,7 @@ const Course: React.FC = () => {
   const FETCH_COURSE = USER_URL + `/course/${courseId}`;
   const navigate = useNavigate();
 
-  const { data: course } = useQuery<CourseType>({
+  const { data: course , isLoading} = useQuery<CourseType>({
     queryKey: ["fetch course by id", courseId],
     queryFn: async () => {
       const response = await appApiClient.get(FETCH_COURSE);
@@ -61,7 +61,17 @@ const Course: React.FC = () => {
   }
 
   return (
-    <article className="w-full min-h-screen bg-white sm:px-4 sm:py-4 mb-20">
+   <main>
+    {isLoading ? <div className='flex flex-col px-5'>
+      <div className="mt-6 w-full h-16 rounded-md bg-neutral-50 aimate-pulse"/>
+      <div className="mt-6 w-full h-48 rounded-md bg-neutral-50 aimate-pulse"/>
+      <div className="mt-6 w-full h-16 rounded-md bg-neutral-50 aimate-pulse"/>
+      <div className="mt-6 w-2/5 h-10 rounded-md bg-neutral-50 aimate-pulse"/>
+      <div className="mt-6 w-full h-24 rounded-md bg-neutral-50 aimate-pulse"/>
+      <div className="mt-6 w-full h-24 rounded-md bg-neutral-50 aimate-pulse"/>
+      <div className="mt-6 w-full h-24 rounded-md bg-neutral-50 aimate-pulse"/>
+    </div> :  <article className="w-full min-h-screen bg-white sm:px-4 sm:py-4 mb-20">
+      
       <header>
         <h1 className='text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-purple-700'>
           {course?.title}
@@ -70,6 +80,7 @@ const Course: React.FC = () => {
 
       <figure className='mt-4'>
         <div className='w-full h-48 border border-neutral-200 shadow-sm rounded-2xl bg-white flex justify-center items-center relative'>
+         <img src={course?.imageurl}  className="h-full rounded-lg"alt="" />
           <div className="absolute top-0 left-0">
             <div className="flex flex-wrap items-center space-x-2 p-2">
               <div className="bg-purple-100 text-purple-800 px-2 py-1 rounded-full">
@@ -80,7 +91,7 @@ const Course: React.FC = () => {
 
           <div className="absolute bottom-0 right-0">
             <div className="flex flex-wrap items-center space-x-4 p-2">
-              {course?.tags?.languages.map((t, i) => (
+              {course?.tags?.languages.slice(0,3).map((t, i) => (
                 <div key={i} className='space-x-2'>
                   <span className="text-xs bg-white border border-neutral-100 ring-1 ring-purple-500 text-purple-800 px-2 py-1 rounded-full mr-1">
                     {t.name}
@@ -121,7 +132,8 @@ const Course: React.FC = () => {
           </button>
         </div>
       </nav>
-    </article>
+    </article>}
+   </main>
   );
 };
 
