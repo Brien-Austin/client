@@ -9,7 +9,7 @@ import {
   Maximize,
   RotateCcw,
   FastForward,
-  Settings
+
 } from 'lucide-react';
 import { Slider } from './slider';
 
@@ -34,7 +34,8 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   const [isMuted, setIsMuted] = useState<boolean>(false);
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
   console.log(isFullscreen)
-
+  const [showVolumeSlider, setShowVolumeSlider] = useState<boolean>(false);
+  
   // Format time to MM:SS
   const formatTime = (timeInSeconds: number): string => {
     const minutes: number = Math.floor(timeInSeconds / 60);
@@ -55,7 +56,8 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   };
 
   // Handle volume change
-  const handleVolumeChange = (newVolume: number): void => {
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const newVolume = parseFloat(e.target.value);
     if (videoRef.current) {
       videoRef.current.volume = newVolume;
       setVolume(newVolume);
@@ -143,6 +145,17 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
           onClick={togglePlay}
         />
         
+        {/* Center Play Button */}
+        {!isPlaying && (
+          <button
+            onClick={togglePlay}
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors group-hover:opacity-100"
+            type="button"
+          >
+            <Play className="w-4 h-4 text-white" />
+          </button>
+        )}
+        
         {/* Custom Controls */}
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 transition-opacity opacity-0 group-hover:opacity-100">
           <div className="space-y-2">
@@ -153,7 +166,6 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
               max={duration}
               step={1}
               className="w-full"
-              
               onValueChange={(value: number[]): void => handleSeek(value[0])}
             />
             
@@ -190,9 +202,13 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
                 </button>
                 
                 {/* Volume */}
-                <div className="flex items-center gap-2">
+                <div 
+                  className="flex items-center gap-2 relative"
+                  onMouseEnter={() => setShowVolumeSlider(true)}
+                  onMouseLeave={() => setShowVolumeSlider(false)}
+                >
                   <button 
-                    onClick={() => handleVolumeChange(isMuted ? 1 : 0)}
+                    onClick={() => handleVolumeChange({ target: { value: isMuted ? '1' : '0' } } as React.ChangeEvent<HTMLInputElement>)}
                     className="p-1 hover:bg-white/20 rounded-full transition-colors"
                     type="button"
                   >
@@ -201,18 +217,19 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
                       <Volume2 className="lg:w-5 lg:h-5 sm:w-3 sm:h-3 text-white" />
                     }
                   </button>
-                  <Slider
-                   style={{
-                    // Custom styles for the slider
-                    '--slider-color': 'rgb(239, 68, 68)', // Red color (you can change this)
-                  } as React.CSSProperties}
-                    value={[volume]}
-                    min={0}
-                    max={1}
-                    step={0.1}
-                    className="w-20"
-                    onValueChange={(value: number[]): void => handleVolumeChange(value[0])}
-                  />
+                  
+                  {/* Custom Volume Slider */}
+                  <div className={`absolute bottom-full left-0 mb-2 bg-black/80 p-2 rounded-md transition-opacity ${showVolumeSlider ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+                    <input
+                      type="range"
+                      min="0"
+                      max="1"
+                      step="0.1"
+                      value={volume}
+                      onChange={handleVolumeChange}
+                      className="w-20 h-1 appearance-none bg-white/20 rounded-full outline-none [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-purple-600 [&::-webkit-slider-thumb]:cursor-pointer"
+                    />
+                  </div>
                 </div>
                 
                 {/* Time */}
@@ -223,12 +240,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
               
               <div className="flex items-center gap-2">
                 {/* Settings */}
-                <button 
-                  className="p-1 hover:bg-white/20 rounded-full transition-colors"
-                  type="button"
-                >
-                  <Settings className="lg:w-5 lg:h-5 sm:w-3 sm:h-3 text-white" />
-                </button>
+                
                 
                 {/* Fullscreen */}
                 <button 

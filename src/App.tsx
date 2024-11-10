@@ -49,7 +49,7 @@ const App = () => {
       <Route path='/instructor/enrollments' element={<InstructorEnrollments/>}/>
       <Route path='/instructor/settings' element={<InstructorSettings/>}/>
       <Route path='/mycourses/course/:id' element={<EnrolledCourse/>}/>
-      <Route path='/videojs' element={<PlayerChapter/>}/>
+      <Route path='/mycourses/course/:id/chapter' element={<PlayerChapter/>}/>
     </Routes>
    </Router>
   )
