@@ -28,6 +28,7 @@ const MyCoursesList: React.FC<MyCourseListProps> = ({
       navigate(`/mycourses/course/${id}`)
 
     }
+    const totalProgres =chapters &&  Math.round(((progress/chapters) * 100))
   return (
     <div key={id} className="w-full bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow duration-300">
       <div className="flex flex-col md:flex-row h-full">
@@ -58,12 +59,12 @@ const MyCoursesList: React.FC<MyCourseListProps> = ({
             <div className="space-y-2">
               <div className="flex justify-between text-sm">
                 <span className="text-gray-600">Progress</span>
-                <span className="text-purple-600 font-medium">{progress}%</span>
+                <span className="text-purple-600 font-medium">{totalProgres}%</span>
               </div>
               <div className="w-full bg-gray-200 rounded-full h-2">
                 <div 
                   className="bg-gradient-to-r from-purple-500 to-purple-600 h-2 rounded-full transition-all duration-300"
-                  style={{ width: `${progress}%` }}
+                  style={{ width: `${totalProgres}%` }}
                 />
               </div>
             </div>
@@ -76,7 +77,7 @@ const MyCoursesList: React.FC<MyCourseListProps> = ({
               </div>
               <div className="flex items-center">
                 <BarChart className="w-4 h-4 mr-1" />
-                <span>{progress}% Complete</span>
+                <span>{totalProgres}% Complete</span>
               </div>
             </div>
           </div>
