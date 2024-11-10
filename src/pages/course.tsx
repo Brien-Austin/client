@@ -71,7 +71,8 @@ const Course: React.FC = () => {
 
   return (
    <main>
-    {isLoading ? <div className='flex flex-col px-5'>
+    {isLoading ? 
+    <div className='flex flex-col px-5'>
       <div className="mt-6 w-full h-16 rounded-md bg-neutral-50 aimate-pulse"/>
       <div className="mt-6 w-full h-48 rounded-md bg-neutral-50 aimate-pulse"/>
       <div className="mt-6 w-full h-16 rounded-md bg-neutral-50 aimate-pulse"/>

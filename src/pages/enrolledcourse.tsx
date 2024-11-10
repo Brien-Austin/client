@@ -41,7 +41,8 @@ const EnrolledCourse = () => {
     }
   }
 
-  return <EnrolledCourseLayout>{renderCurrentCourse()}</EnrolledCourseLayout>;
+  return <EnrolledCourseLayout>{renderCurrentCourse()}
+    </EnrolledCourseLayout>;
 };
 
 export default EnrolledCourse;

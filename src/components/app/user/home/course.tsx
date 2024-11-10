@@ -1,4 +1,6 @@
 import { useAuth } from "@/hooks/useAuth";
+import { setCurrentCourse} from "@/store/slice/course";
+import { useAppDispatch } from "@/store/store";
 import { Chapter, Tag } from "@/types/api-return";
 import { Image } from "lucide-react";
 import React, { useMemo } from "react";
@@ -36,6 +38,11 @@ const Course: React.FC<CourseProps> = ({
       )
     );
   }, [id, user?.courses]);
+  const dispatch = useAppDispatch()
+  const enrolledCourse =() => {
+    dispatch(setCurrentCourse(id))
+    navigate(`mycourses/course/${id}`);
+  }
 
 
   const progressPercentage = useMemo(() => {
@@ -96,9 +103,7 @@ const Course: React.FC<CourseProps> = ({
       <div className="mt-2">
         {isUserEnrolled ? (
           <button
-            onClick={() => {
-              navigate(`mycourses/course/${id}`);
-            }}
+            onClick={enrolledCourse}
             className="flex justify-center items-center w-full py-2 text-white rounded-sm bg-gradient-to-b from-purple-500 to-purple-600"
           >
           {isFull ? <>Download certificates</> : <>Continue Learning</>}
